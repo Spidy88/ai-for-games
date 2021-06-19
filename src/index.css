@@ -1,8 +1,43 @@
-body {
+/* EFF3E7
+E9A462
+A476AF
+528CA8
+211A2B */
+
+html, body {
   margin: 0;
-  font-family: 'Indie Flower', cursive;
+  padding: 0;
+  min-width: 100vw;
+  min-height: 100vh;
+}
+
+body {
+  --main-bg-color: #F8F9FA;
+  --main-text-color: #12192D;
+  --sec-text-color: #040508;
+  --inv-bg-color: #12192D;
+  --inv-text-color: #F8F9FA;
+  font-size: 24px;
+  font-family: 'Montserrat', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: var(--inv-bg-color);
+  color: var(--inv-text-color);
+}
+
+.container {
+  max-width: 1200px;
+  margin: auto;
+}
+
+.inverse {
+  background-color: var(--inv-bg-color);
+  color: var(--inv-text-color);
+}
+
+h1 {
+  font-weight: 600;
+  color: var(--inv-text-color);
 }
 
 code {

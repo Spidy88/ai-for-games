@@ -1,9 +1,15 @@
-import { Vector, length } from "./vectors";
+import { KinematicCharacter } from "../types";
+import { orientationAsVector } from "./vectors";
+import { randomBinomial } from "./random";
 
-export function velocity2Orientation(velocity: Vector) {
-  if (length(velocity) === 0) {
-    return -1;
-  }
+export function wander(character: KinematicCharacter) {
+  let { maxSpeed, maxRotation } = character;
+  let direction = orientationAsVector(character.rotation);
+  let linear = [maxSpeed * direction.x, maxSpeed * direction.y];
+  let angular = randomBinomial() * maxRotation;
 
-  return Math.atan2(-velocity[0], velocity[1]);
+  return {
+    linear,
+    angular
+  };
 }

@@ -1,5 +1,4 @@
-export type Vector = number[];
-export type VectorLike = Vector | number;
+import { Vector, VectorLike } from '../types';
 
 export function add(v1: Vector, v2: VectorLike) {
     if (typeof v2 === 'number') {
@@ -69,5 +68,30 @@ export function add(v1: Vector, v2: VectorLike) {
   
   function _multS(v1: Vector, s: number) {
     return v1.map((v) => v * s);
+  }
+
+  export function normalize(vector: Vector) {
+    let magnitude = length(vector);
+    return vector.map(val => val / magnitude);
+  }
+
+  function degreesAsRadians(degrees: number) {
+    return degrees * 0.017453;
+  }
+  
+  export function orientationAsVector(orientation: number) {
+    const radians = degreesAsRadians(orientation);
+    return {
+      x: -Math.sin(radians),
+      y: Math.cos(radians),
+    };
+  }
+
+  export function vectorAsOrientation(velocity: Vector) {
+    if (length(velocity) === 0) {
+      return -1;
+    }
+  
+    return Math.atan2(-velocity[0], velocity[1]);
   }
   
