@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       BASE_PATH: ai-for-games
-      PUBLIC_URL: ai-for-games
+      REACT_APP_PUBLIC_URL: ai-for-games
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
