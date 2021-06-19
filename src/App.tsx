@@ -1,7 +1,6 @@
 import './App.css';
-import { RouteComponentProps } from '@reach/router';
 
-export interface AppProps extends RouteComponentProps {}
+export interface AppProps {}
 function App() {
   return (
     <div className="App">

@@ -1,6 +1,4 @@
-import { RouteComponentProps } from '@reach/router';
-
-export interface LandingPageProps extends RouteComponentProps {}
+export interface LandingPageProps {}
 
 export function LandingPage(props: LandingPageProps) {
     return (

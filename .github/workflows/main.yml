@@ -18,8 +18,7 @@ jobs:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
     env:
-      BASE_PATH: ai-for-games
-      REACT_APP_PUBLIC_URL: ai-for-games
+      REACT_APP_BASE_PATH: ai-for-games
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
