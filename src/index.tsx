@@ -8,11 +8,9 @@ import {
 import './index.css';
 import { LandingPage } from './pages';
 
-const basePath = `/${process.env.REACT_APP_BASE_PATH ?? ''}`;
-
 ReactDOM.render(
   <React.StrictMode>
-    <Router basename={basePath}>
+    <Router>
       <Switch>
         <Route exact path="/" >
           <LandingPage />
