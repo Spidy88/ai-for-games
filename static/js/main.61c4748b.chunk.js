@@ -1,2 +1,0 @@
-(this["webpackJsonpai-for-games"]=this["webpackJsonpai-for-games"]||[]).push([[0],{22:function(e,t,c){},29:function(e,t,c){"use strict";c.r(t);var n=c(0),r=c.n(n),s=c(15),a=c.n(s),i=c(17),j=c(2),o=(c(22),c(5));function h(e){return Object(o.jsx)("h1",{children:"AI for Games"})}a.a.render(Object(o.jsx)(r.a.StrictMode,{children:Object(o.jsx)(i.a,{children:Object(o.jsx)(j.c,{children:Object(o.jsx)(j.a,{exact:!0,path:"/",children:Object(o.jsx)(h,{})})})})}),document.getElementById("root"))}},[[29,1,2]]]);
-//# sourceMappingURL=main.61c4748b.chunk.js.map
