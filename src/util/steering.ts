@@ -1,11 +1,11 @@
 import { KinematicCharacter } from "../types";
-import { orientationAsVector } from "./vectors";
+import { orientationAsVector, mult } from "./vectors";
 import { randomBinomial } from "./random";
 
 export function wander(character: KinematicCharacter) {
   let { maxSpeed, maxRotation } = character;
-  let direction = orientationAsVector(character.rotation);
-  let linear = [maxSpeed * direction.x, maxSpeed * direction.y];
+  let direction = orientationAsVector(character.orientation);
+  let linear = mult(direction, maxSpeed);
   let angular = randomBinomial() * maxRotation;
 
   return {

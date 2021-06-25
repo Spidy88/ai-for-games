@@ -1,6 +1,11 @@
 export type Vector = number[];
 export type VectorLike = Vector | number;
 
+export interface Static {
+    position: Vector,
+    orientation: number
+};
+
 export interface Kinematic {
     position: Vector,
     orientation: number,
@@ -17,3 +22,7 @@ export interface KinematicCharacter extends Kinematic {
     maxSpeed: number;
     maxRotation: number;
 };
+
+export interface ObservableCharacter {
+    
+}

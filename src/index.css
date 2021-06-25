@@ -17,7 +17,15 @@ body {
   --sec-text-color: #040508;
   --inv-bg-color: #12192D;
   --inv-text-color: #F8F9FA;
-  font-size: 24px;
+  --s100: 11px;
+  --s200: 12px;
+  --s300: 14px;
+  --s400: 16px;
+  --s500: 20px;
+  --s600: 24px;
+  --s700: 32px;
+  --s800: 64px;
+  font-size: var(--s600);
   font-family: 'Montserrat', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

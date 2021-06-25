@@ -1,51 +1,31 @@
 import { useRef, useEffect } from 'react';
 import * as PIXI from "pixi.js";
-import { Character } from '../../models/character';
-import { wander } from '../../util/steering';
-import { kinematicUpdate, keepOnScreen } from '../../util/update';
+import { App } from '../../models/app';
 
 export type PlayfieldProps = {
-    avatar: string,
-    characters: Character[]
+    app: App
 };
 
 export function Playfield(props: PlayfieldProps) {
-    const appRef = useRef<PIXI.Application>();
+    const { app } = props;
     const elRef = useRef<HTMLDivElement>(null);
     
     useEffect(() => {
             let size = elRef.current!.parentElement!.getBoundingClientRect();
-            const app = new PIXI.Application({
+            const pixiApp = new PIXI.Application({
                 width: size.width,
                 height: size.height,
                 transparent: true
             });
 
-            elRef.current!.appendChild(app.view);
-
-            appRef.current = app;
-            //app.ticker.add(onTick);
-
-            // TODO: REMOVE THIS
-            let character = new Character({
-                avatarUrl: props.avatar,
-                size: size.width / 10
-            });
-            app.stage.addChild(character.view);
-
-            const myTick = (delta: number) => {
-                let steering = wander(character);
-                kinematicUpdate(delta, steering, character);
-                keepOnScreen(character, [size.width, size.height]);
-            };
-            app.ticker.add(myTick);
+            elRef.current!.appendChild(pixiApp.view);
+            app.registerPixiApp(pixiApp);
 
             return () => {
-                //app.ticker.remove(onTick);
-                app.ticker.remove(myTick);
-                app.destroy(true);
+                app.unregisterPixiApp();
+                pixiApp.destroy(true);
             };
-    }, [props.avatar]);
+    }, [app]);
 
     return (
         <div ref={elRef} />
