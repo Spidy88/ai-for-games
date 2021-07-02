@@ -56,25 +56,21 @@ export function CharacterControls(props: CharacterControlsProps) {
     }, [character]);
 
     return (
-        <div ref={controlsRef}>
+        <div ref={controlsRef} style={{ display: 'grid', gridTemplateColumns: 'auto auto', gap: '1rem' }}>
             <label>Velocity</label>
-            <div className="velocity">0 - (0, 0)</div>
+            <span className="velocity">0 - (0, 0)</span>
 
             <label>Velocity direction</label>
-            <div className="direction">0</div>
+            <span className="direction">0</span>
 
             <label>Orientation</label>
-            <div className="orientation">0</div>
+            <span className="orientation">0</span>
 
-            <div>
-                <label>Max speed</label>
-                <input className="maxSpeed" type="number" min="0" max="50" onChange={updateMaxSpeed} />
-            </div>
+            <label>Max speed</label>
+            <input className="maxSpeed" type="number" min="0" max="50" onChange={updateMaxSpeed} />
 
-            <div>
-                <label>Max rotation</label>
-                <input className="maxRotation" type="number" min="0" max="50" onChange={updateMaxRotation} />
-            </div>
+            <label>Max rotation</label>
+            <input className="maxRotation" type="number" min="0" max="50" onChange={updateMaxRotation} />
         </div>
     );
 }
