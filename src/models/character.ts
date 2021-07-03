@@ -1,6 +1,6 @@
 import * as PIXI from "pixi.js";
 import { v4 as uuid } from "uuid";
-import { KinematicCharacter, Vector } from "../types";
+import { DynamicCharacter, Vector } from "../types";
 import orientationCircle from '../assets/character-circle.png';
 
 export enum Position {
@@ -20,26 +20,30 @@ export type CharacterOptions = {
     size?: number,
     hideRotation?: boolean
 };
-export class Character implements KinematicCharacter {
+export class Character implements DynamicCharacter {
     public readonly id: string;
     private _container: PIXI.Container;
     private _avatar: PIXI.Sprite;
     private _circle: PIXI.Sprite;
     private _position: Vector;
     private _orientation: number;
-    private _rotation: number;
-    private _velocity: Vector;
-    private _maxSpeed: number;
-    private _maxRotation: number;
+    public rotation: number;
+    public velocity: Vector;
+    public maxSpeed: number;
+    public maxRotation: number;
+    public maxAcceleration: number;
+    public maxAngularAcceleration: number;
 
     constructor(options: CharacterOptions) {
         this.id = uuid();
         this._position = [0, 0];
         this._orientation = 0;
-        this._rotation = 0;
-        this._velocity = [0, 0];
-        this._maxSpeed = 240;
-        this._maxRotation = 120;
+        this.rotation = 0;
+        this.velocity = [0, 0];
+        this.maxSpeed = 240;
+        this.maxRotation = 120;
+        this.maxAcceleration = 60;
+        this.maxAngularAcceleration = 15;
 
         this._container = new PIXI.Container();
         this._avatar = PIXI.Sprite.from(options.avatarUrl);
@@ -106,38 +110,6 @@ export class Character implements KinematicCharacter {
     set orientation(orientation: number) {
         this._orientation = (orientation % 360) + (orientation < 0 ? 360 : 0);
         this._circle.angle = 360 - this._orientation + 135;
-    }
-
-    get velocity() {
-        return this._velocity;
-    }
-
-    set velocity(velocity: Vector) {
-        this._velocity = velocity;
-    }
-
-    get rotation() {
-        return this._rotation;
-    }
-
-    set rotation(rotation: number) {
-        this._rotation = rotation;
-    }
-
-    get maxSpeed() {
-        return this._maxSpeed;
-    }
-
-    set maxSpeed(maxSpeed: number) {
-        this._maxSpeed = maxSpeed;
-    }
-
-    get maxRotation() {
-        return this._maxRotation;
-    }
-
-    set maxRotation(maxRotation: number) {
-        this._maxRotation = maxRotation;
     }
 
     get size() {

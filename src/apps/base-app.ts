@@ -1,11 +1,6 @@
 import * as PIXI from 'pixi.js';
 import { App } from "../models/app";
-import { Character, Position } from '../models/character';
-import { length, normalize, sub, vectorAsOrientation } from '../util/vectors';
-
-type MouseDragEvent = PIXI.InteractionEvent & {
-    isDragging: boolean;
-};
+import { Character } from '../models/character';
 
 export class BaseApp implements App {
     protected _isRunning: boolean = false;
@@ -44,12 +39,17 @@ export class BaseApp implements App {
         this.tick(stepSize, true);
     }
 
-    protected tick(delta: number, force: boolean = false) {}
+    private tick(delta: number, force: boolean = false) {
+        if (!this.isRunning && !force) return;
+        this.onTick(delta);
+    }
+
     private tickWrapper = (delta: number) => {
         // delta is in ms , but we want calculations to be in seconds
-        //this.tick(delta);
         this.tick(this._pixiApp!.ticker.elapsedMS / 1000);
     }
+
+    protected onTick(deleta: number) {}
 
     registerPixiApp = (pixiApp: PIXI.Application) => {
         if (this._pixiApp) throw new Error('App is already registered to a PIXI App');
@@ -72,48 +72,5 @@ export class BaseApp implements App {
         if (!this._pixiApp) throw new Error('App is not registered to a PIXI App');
         this._pixiApp.ticker.remove(this.tickWrapper);
         this._pixiApp = null;
-    }
-
-    protected makeInteractable(character: Character) {
-        const self = this;
-        const container = character.view;
-        container.interactive = container.buttonMode = true;
-        container
-            // events for drag start
-            .on("mousedown", onDragStart)
-            .on("touchstart", onDragStart)
-            // events for drag end
-            .on("mouseup", onDragEnd)
-            .on("mouseupoutside", onDragEnd)
-            .on("touchend", onDragEnd)
-            .on("touchendoutside", onDragEnd)
-            // events for drag move
-            .on("mousemove", onDragMove)
-            .on("touchmove", onDragMove);
-
-        function onDragStart(event: MouseDragEvent) {
-            event.isDragging = true;
-        }
-
-        function onDragEnd(event: MouseDragEvent) {
-            event.isDragging = false;
-        }
-
-        function onDragMove(event: MouseDragEvent) {
-            if (event.isDragging) {
-                if (self._pixiApp) {
-                    const newPosition = event.data?.getLocalPosition?.(self._pixiApp.stage);
-                    let targetDirection = sub([newPosition.x, newPosition.y], character.position);
-
-                    if (length(targetDirection) > 0.001) {
-                        targetDirection = normalize(targetDirection);
-                        const targetOrientation = vectorAsOrientation(targetDirection, character.orientation);
-                        character.orientation = targetOrientation;
-                    }
-                    
-                    character.setPosition(newPosition.x, newPosition.y, Position.CENTER);
-                }
-            }
-        }
     }
 }

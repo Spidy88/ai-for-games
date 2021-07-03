@@ -1,7 +1,7 @@
-import { Playfield,  } from "../../components/playfield";
-import { Controls } from "../../components/controls";
-import { PlaygroundContainer, ControlsContainer } from "../landing/landing.css";
-import { WanderApp } from "../../apps/wander-app";
+import { Playfield,  } from "../../../components/playfield";
+import { Controls } from "../../../components/controls";
+import { PlaygroundContainer, ControlsContainer } from "../../landing/landing.css";
+import { WanderApp } from "../../../apps/wander-app";
 import { useState } from "react";
 
 export function WanderAlgorithm() {

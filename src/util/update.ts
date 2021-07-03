@@ -1,4 +1,3 @@
-import { Character } from "../models/character";
 import { Steering, KinematicCharacter, Vector } from "../types";
 import { clamp } from "./random";
 import { add, mult, normalize, length } from "./vectors";
@@ -16,6 +15,10 @@ export function standardKinematicUpdate(delta: number, steering: Steering, chara
 
     character.velocity = add(character.velocity, mult(steering.linear, delta));
     character.rotation += steering.angular * delta;
+
+    if (length(character.velocity) > character.maxSpeed) {
+        character.velocity = mult(normalize(character.velocity), character.maxSpeed);
+    }
 }
 
 export function newtonEuler1Update(delta: number, steering: Steering, character: KinematicCharacter) {
@@ -27,6 +30,10 @@ export function newtonEuler1Update(delta: number, steering: Steering, character:
 
     character.velocity = add(character.velocity, mult(steering.linear, delta));
     character.rotation += steering.angular * delta;
+
+    if (length(character.velocity) > character.maxSpeed) {
+        character.velocity = mult(normalize(character.velocity), character.maxSpeed);
+    }
 }
 
 export function kinematicUpdate(delta: number, steering: Steering, character: KinematicCharacter) {
@@ -35,9 +42,7 @@ export function kinematicUpdate(delta: number, steering: Steering, character: Ki
 
     character.velocity = steering.linear;
     character.rotation = steering.angular;
-}
 
-export function clampKinematics(character: Character) {
     if (length(character.velocity) > character.maxSpeed) {
         character.velocity = mult(normalize(character.velocity), character.maxSpeed);
     }
@@ -61,4 +66,9 @@ export function keepOnScreenWithBlock(character: KinematicCharacter, size: Vecto
     if (character.position[0] < left) character.position = [left, character.position[1]];
     if (character.position[1] > bottom) character.position = [character.position[0], bottom];
     if (character.position[1] < top) character.position = [character.position[0], top];
+}
+
+export function stop(character: KinematicCharacter) {
+    character.velocity = [0, 0];
+    character.rotation = 0;
 }

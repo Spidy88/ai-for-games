@@ -23,6 +23,11 @@ export interface KinematicCharacter extends Kinematic {
     maxRotation: number;
 };
 
+export interface DynamicCharacter extends KinematicCharacter {
+    maxAcceleration: number;
+    maxAngularAcceleration: number;
+}
+
 export interface ObservableCharacter {
     
 }

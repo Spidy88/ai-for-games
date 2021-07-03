@@ -1,23 +1,22 @@
-import { Playfield,  } from "../../components/playfield";
-import { Controls } from "../../components/controls";
-import { PlaygroundContainer, ControlsContainer } from "../landing/landing.css";
-import { SeekApp, SeekWithRotationApp } from "../../apps/seek-app";
+import { Playfield,  } from "../../../components/playfield";
+import { Controls } from "../../../components/controls";
+import { PlaygroundContainer, ControlsContainer } from "../../landing/landing.css";
+import { SeekApp, SeekWithRotationApp, SeekOmnidirectionalApp } from "../../../apps/dynamic-seek-app";
 import { useState } from "react";
 
 export function SeekAlgorithm() {
     const [seekApp] = useState(() => new SeekApp());
     const [seekWithRotationApp] = useState(() => new SeekWithRotationApp());
+    const [seekOmnidirectionalApp] = useState(() => new SeekOmnidirectionalApp());
 
     return (
         <>
-            <h1>Seek Algorithm</h1>
+            <h1>Seek Algorithm (Dynamic)</h1>
             <p>
-                In its simplest form, the seek algorithm moves a character towards its target in a linear fashion.
-                Direct and at a constant speed. This causes a few interesting visuals. First, the character starts 
-                movement abrubtly due to their speed being constantly at max speed. Second, the character struggles 
-                to find a final position and "vibrates" at the destination. This is caused by the movement algorithm
-                overshooting the destination since its always moving at max speed. Try it out below (you can drag and 
-                move the villain).
+                Previously we saw Seek with a Kinematic algorithm (constant velocity).
+                Now we get to see it with a Dynamic algorithm (constant acceleration).
+                Using acceleration to move a character gives us the ability to speed up over time,
+                as well as change direction in a more natural deacceleration, reacceleration.
             </p>
 
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 350px', gap: '2rem' }}>
@@ -47,6 +46,24 @@ export function SeekAlgorithm() {
 
                 <ControlsContainer>
                     <Controls app={seekWithRotationApp} />
+                </ControlsContainer>
+            </div>
+
+            <h3>Seek Algorithm (omnidirectional movement)</h3>
+            <p>
+                Forcing the character to only move forward while also trying to rotate to the correct direction, 
+                requires finely tuned parameters. A lot of games provide omni directional movement (side step and back pedal) 
+                so I wanted to see what that might look like. In this example, the AI can move in any direction 
+                but is still constrainted to their velocity and acceleration. Rotation happens but separately.
+            </p>
+
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 350px', gap: '2rem' }}>
+                <PlaygroundContainer>
+                    <Playfield app={seekOmnidirectionalApp} />
+                </PlaygroundContainer>
+
+                <ControlsContainer>
+                    <Controls app={seekOmnidirectionalApp} />
                 </ControlsContainer>
             </div>
         </>

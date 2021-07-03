@@ -34,6 +34,27 @@ export const DynamicSeek = {
     code: ''
 };
 
+export const DynamicFlee = {
+    url: 'dynamic-flee',
+    title: 'Flee',
+    details: 'An algorithm for dynamically fleeing form a target using accelerationt o adjust velcity instead of a constant velocity.',
+    code: ''
+};
+
+export const DynamicArrive = {
+    url: 'dynamic-arrive',
+    title: 'Arrive',
+    details: '',
+    code: ''
+};
+
+export const DynamicAlign = {
+    url: 'dynamic-align',
+    title: 'Align',
+    details: '',
+    code: ''
+}
+
 export const KinematicSection = {
     title: 'Kinematic',
     articles: [
@@ -47,7 +68,10 @@ export const KinematicSection = {
 export const DynamicSection = {
     title: 'Dynamic',
     articles: [
-        DynamicSeek
+        DynamicSeek,
+        DynamicFlee,
+        DynamicArrive,
+        DynamicAlign
     ]
 };
 
