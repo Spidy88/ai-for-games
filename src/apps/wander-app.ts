@@ -1,8 +1,8 @@
 import * as PIXI from 'pixi.js';
 import { App } from "../models/app";
-import { Character } from '../models/character';
+import { Position, Character } from '../models/character';
 import { wander } from "../util/steering";
-import { directUpdate, keepOnScreen } from "../util/update";
+import { directUpdate, kinematicUpdate, keepOnScreen } from "../util/update";
 import avatarUrl from '../assets/spidy-avatar.png';
 
 export class WanderApp implements App {
@@ -35,7 +35,8 @@ export class WanderApp implements App {
     }
 
     reset = () => {
-        this._spidy.position = [0, 0];
+        this._spidy.setPosition(0, 0, Position.TOP_LEFT);
+        this._spidy.orientation = 0;
     }
 
     step = () => {
@@ -50,6 +51,7 @@ export class WanderApp implements App {
 
         let steering = wander(this._spidy);
         directUpdate(delta, steering, this._spidy);
+        //kinematicUpdate(delta, steering, this._spidy);
         keepOnScreen(this._spidy, [this._pixiApp!.screen.width, this._pixiApp!.screen.height])
     }
 

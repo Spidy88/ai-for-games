@@ -3,6 +3,18 @@ import { v4 as uuid } from "uuid";
 import { KinematicCharacter, Vector } from "../types";
 import orientationCircle from '../assets/character-circle.png';
 
+export enum Position {
+    CENTER,
+    LEFT,
+    TOP,
+    RIGHT,
+    BOTTOM,
+    TOP_LEFT,
+    TOP_RIGHT,
+    BOTTOM_LEFT,
+    BOTTOM_RIGHT
+}
+
 export type CharacterOptions = {
     avatarUrl: string,
     size?: number
@@ -23,7 +35,7 @@ export class Character implements KinematicCharacter {
         this._orientation = 0;
         this._rotation = 0;
         this._velocity = [0, 0];
-        this._maxSpeed = 5;
+        this._maxSpeed = 2;
         this._maxRotation = 5;
 
         this._container = new PIXI.Container();
@@ -56,8 +68,26 @@ export class Character implements KinematicCharacter {
     }
 
     set position([x, y]) {
-        this._container.x = x - this._container.width / 2;
-        this._container.y = y - this._container.height / 2;
+        this.setPosition(x, y, Position.CENTER);
+    }
+
+    setPosition(x: number, y: number, position: Position) {
+        if ([Position.TOP, Position.CENTER, Position.BOTTOM].includes(position)) {
+            x -= this._container.width / 2;
+        }
+        else if ([Position.TOP_RIGHT, Position.RIGHT, Position.BOTTOM_RIGHT].includes(position)) {
+            x -= this._container.width;
+        }
+
+        if ([Position.LEFT, Position.CENTER, Position.RIGHT].includes(position)) {
+            y -= this._container.height / 2;
+        }
+        else if ([Position.BOTTOM_LEFT, Position.BOTTOM, Position.BOTTOM_RIGHT].includes(position)) {
+            y -= this._container.height;
+        }
+
+        this._container.x = x;
+        this._container.y = y;
     }
 
     get orientation() {
