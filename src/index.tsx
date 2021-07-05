@@ -8,7 +8,7 @@ import {
 } from 'react-router-dom';
 import styled from 'styled-components';
 import './index.css';
-import { LandingPage, ExplorePage, PlaygroundPage } from './pages';
+import { LandingPage, ExplorePage, PlaygroundPage, AlgorithmPage } from './pages';
 import homeIcon from './assets/icons/home.svg';
 import exploreIcon from './assets/icons/explore.svg';
 import playgroundIcon from './assets/icons/playground.svg';
@@ -68,6 +68,9 @@ ReactDOM.render(
           </Route>
           <Route exact path="/explore">
             <ExplorePage />
+          </Route>
+          <Route path="/explore/:algorithm">
+            <AlgorithmPage />
           </Route>
           <Route exact path="/playground">
             <PlaygroundPage />
