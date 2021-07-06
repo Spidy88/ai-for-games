@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 export const Grid = styled.section`
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
     gap: 2rem 1rem;
 `;
 
@@ -12,6 +12,7 @@ export const AlgorithmCard = styled.article`
     color: var(--main-text-color);
     border-radius: 4px;
     padding: 0.75rem 1.25rem;
+    margin-bottom: 1rem;
 `;
 
 export const CardLink = styled(Link)`

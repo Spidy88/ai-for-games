@@ -1,4 +1,5 @@
 import React from 'react';
+import { Playfield } from '../../components/playfield';
 import { Grid, AlgorithmCard, CardLink } from './explore.css';
 import Data from './explore.data';
 
@@ -10,16 +11,23 @@ export function ExplorePage() {
             {Data.sections.map((section, i) => (
                 <React.Fragment key={i}>
                     <h2>{section.title}</h2>
-                    <Grid>
-                        {section.articles.map((article, j) => (
-                            <CardLink key={j} to={`explore/${article.url}`}>
-                                <AlgorithmCard>
-                                    <h3>{article.title}</h3>
-                                    <p>{article.details}</p>
-                                </AlgorithmCard>
-                            </CardLink>
-                        ))}
-                    </Grid>
+                    {section.articles.map((article, j) => (
+                        <CardLink key={j} to={`explore/${article.url}`}>
+                            <AlgorithmCard>
+                                <Grid>
+                                    <div>
+                                        <h3>{article.title}</h3>
+                                        <p>{article.details}</p>
+                                    </div>
+                                    <div>
+                                        <div style={{ height: '300px' }}>
+                                            
+                                        </div>
+                                    </div>
+                                </Grid>
+                            </AlgorithmCard>
+                        </CardLink>
+                    ))}
                 </React.Fragment>
             ))}
         </>
