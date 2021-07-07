@@ -1,7 +1,7 @@
 import { BaseApp } from './base-app';
 import { Position, Character } from '../models/character';
 import { seek } from "../util/steering";
-import { directUpdate } from "../util/update";
+import { kinematicUpdate } from "../util/update";
 import spidyAvatarUrl from '../assets/spidy-avatar.png';
 import villainAvatarUrl from '../assets/villain-avatar.png';
 
@@ -27,6 +27,6 @@ export class SeekApp extends BaseApp {
         if (!this.isRunning && !force) return;
 
         let steering = seek(this._spidy, this._villain);
-        directUpdate(delta, steering, this._spidy);
+        kinematicUpdate(delta, steering, this._spidy);
     }
 }

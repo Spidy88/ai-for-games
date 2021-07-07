@@ -16,7 +16,7 @@ export function wander(character: KinematicCharacter) {
 
 export function seek(character: KinematicCharacter, target: KinematicCharacter) {
   let { maxSpeed, maxRotation } = character;
-  let direction = normalize(sub(character.position, target.position));
+  let direction = normalize(sub(target.position, character.position));
   let linear = mult(direction, maxSpeed);
   let angular = randomBinomial() * maxRotation;
 
