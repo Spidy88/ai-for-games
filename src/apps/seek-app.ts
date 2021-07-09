@@ -11,8 +11,9 @@ export class SeekApp extends BaseApp {
 
     constructor() {
         super();
-        this._spidy = new Character({ avatarUrl: spidyAvatarUrl });
-        this._villain = new Character({ avatarUrl: villainAvatarUrl });
+        this._spidy = new Character({ avatarUrl: spidyAvatarUrl, hideRotation: true });
+        this._villain = new Character({ avatarUrl: villainAvatarUrl, hideRotation: true });
+        this.makeInteractable(this._villain);
         this._characters = [this._spidy, this._villain];
     }
 

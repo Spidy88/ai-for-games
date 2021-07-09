@@ -1,6 +1,6 @@
 import * as PIXI from 'pixi.js';
 import { App } from "../models/app";
-import { Character } from '../models/character';
+import { Character, Position } from '../models/character';
 
 type MouseDragEvent = PIXI.InteractionEvent & {
     isDragging: boolean;
@@ -46,7 +46,6 @@ export class BaseApp implements App {
 
     registerPixiApp = (pixiApp: PIXI.Application) => {
         if (this._pixiApp) throw new Error('App is already registered to a PIXI App');
-        this.reset();
         this._pixiApp = pixiApp;
 
         for( let character of this._characters) {
@@ -54,6 +53,7 @@ export class BaseApp implements App {
             pixiApp.stage.addChild(character.view);
         }
 
+        this.reset();
         this._pixiApp.ticker.add(this.tick);
     }
 
@@ -63,10 +63,11 @@ export class BaseApp implements App {
         this._pixiApp = null;
     }
 
-    protected makeInteractable(character: PIXI.Container) {
+    protected makeInteractable(character: Character) {
         const self = this;
-        character.interactive = character.buttonMode = true;
-        character
+        const container = character.view;
+        container.interactive = container.buttonMode = true;
+        container
             // events for drag start
             .on("mousedown", onDragStart)
             .on("touchstart", onDragStart)
@@ -91,8 +92,7 @@ export class BaseApp implements App {
             if (event.isDragging) {
                 if (self._pixiApp) {
                     var newPosition = event.data?.getLocalPosition?.(self._pixiApp.stage);
-                    character.x = newPosition.x;
-                    character.y = newPosition.y;
+                    character.setPosition(newPosition.x, newPosition.y, Position.CENTER);
                 }
             }
         }

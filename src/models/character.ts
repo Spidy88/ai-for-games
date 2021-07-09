@@ -17,7 +17,8 @@ export enum Position {
 
 export type CharacterOptions = {
     avatarUrl: string,
-    size?: number
+    size?: number,
+    hideRotation?: boolean
 };
 export class Character implements KinematicCharacter {
     public readonly id: string;
@@ -50,6 +51,10 @@ export class Character implements KinematicCharacter {
         this._circle.x = this._circle.y = 128;
         this._circle.anchor.set(0.5, 0.5);
         this._circle.angle = 135;
+
+        if (options.hideRotation) {
+            this._circle.alpha = 0;
+        }
 
         this._container.addChild(this._circle, this._avatar);
         this._container.width = this._container.height = Math.floor(options?.size ?? 256);

@@ -9,7 +9,11 @@ export function AlgorithmPage() {
 
     return (
         <>
-            <h1>Algorithm</h1>
+            <h1>Seek Algorithm</h1>
+            <p>
+                In its simplest form, the seek algorithm moves one character towards its target in a linear fashion.
+                Direct and at a constant speed
+            </p>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 300px', gap: '2rem' }}>
                 <PlaygroundContainer>
                     <Playfield app={seekApp} />
