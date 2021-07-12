@@ -42,7 +42,10 @@ export class BaseApp implements App {
         this.tick(stepSize, true);
     }
 
-    tick(delta: number, force: boolean = false) {}
+    protected tick(delta: number, force: boolean = false) {}
+    private tickWrapper = (delta: number) => {
+        this.tick(delta / 10);
+    }
 
     registerPixiApp = (pixiApp: PIXI.Application) => {
         if (this._pixiApp) throw new Error('App is already registered to a PIXI App');
@@ -54,12 +57,12 @@ export class BaseApp implements App {
         }
 
         this.reset();
-        this._pixiApp.ticker.add(this.tick);
+        this._pixiApp.ticker.add(this.tickWrapper);
     }
 
     unregisterPixiApp = () => {
         if (!this._pixiApp) throw new Error('App is not registered to a PIXI App');
-        this._pixiApp.ticker.remove(this.tick);
+        this._pixiApp.ticker.remove(this.tickWrapper);
         this._pixiApp = null;
     }
 

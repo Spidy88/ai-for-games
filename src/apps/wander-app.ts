@@ -16,6 +16,8 @@ export class WanderApp extends BaseApp {
     reset = () => {
         this._spidy.setPosition(0, 0, Position.TOP_LEFT);
         this._spidy.orientation = 0;
+        this._spidy.velocity = [0, 0];
+        this._spidy.rotation = 0;
     }
 
     tick = (delta: number, force: boolean = false) => {

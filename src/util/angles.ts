@@ -7,5 +7,11 @@ export function radiansAsDegrees(radians: number) {
 }
 
 export function getShortestRotation(currentDegrees: number, targetDegrees: number) {
-    
+    let rotation = targetDegrees - currentDegrees;
+    if (Math.abs(rotation) > 180) {
+        let adjust = rotation > 0 ? -360 : 360;
+        rotation += adjust;
+    }
+
+    return rotation;
 }

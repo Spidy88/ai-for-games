@@ -16,11 +16,10 @@ export function wander(character: KinematicCharacter) {
 }
 
 export function seek(character: KinematicCharacter, target: KinematicCharacter) {
-  let { maxSpeed, maxRotation } = character;
+  let { maxSpeed } = character;
   let direction = normalize(sub(target.position, character.position));
   let linear = mult(direction, maxSpeed);
-  let rotation = 0;
-  let angular = rotation * maxRotation;
+  let angular = 0;
 
   return {
     linear,
@@ -29,12 +28,15 @@ export function seek(character: KinematicCharacter, target: KinematicCharacter) 
 }
 
 export function seekWithRotation(character: KinematicCharacter, target: KinematicCharacter) {
-  let { maxSpeed, maxRotation, orientation } = character;
-  let direction = normalize(sub(target.position, character.position));
-  let targetOrientation = vectorAsOrientation(direction);
+  let { maxSpeed, orientation } = character;
+  let direction = orientationAsVector(orientation);
+  let targetDirection = normalize(sub(target.position, character.position));
+  let targetOrientation = vectorAsOrientation(targetDirection, orientation);
   let rotation = getShortestRotation(orientation, targetOrientation);
   let linear = mult(direction, maxSpeed);
-  let angular = rotation * maxRotation;
+  let angular = rotation;
+
+  console.log('seek steering: ', { position: character.position, target: target.position, direction, targetDirection, targetOrientation, rotation, linear, angular });
   
   return {
     linear,

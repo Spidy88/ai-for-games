@@ -36,7 +36,7 @@ export function CharacterControls(props: CharacterControlsProps) {
             if (!isMounted) return;
 
             const velocity = `${round(length(character.velocity), 2)} - (${round(character.velocity[0], 2)}, ${round(character.velocity[1], 2)})`;
-            const direction = round(vectorAsOrientation(character.velocity), 1);
+            const direction = round(vectorAsOrientation(character.velocity, character.orientation), 1);
             const orientation = round(character.orientation, 1);
 
             velocityDOM.textContent = velocity;

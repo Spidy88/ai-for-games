@@ -20,8 +20,12 @@ export class SeekApp extends BaseApp {
     reset = () => {
         this._spidy.setPosition(0, 0, Position.TOP_LEFT);
         this._spidy.orientation = 0;
+        this._spidy.velocity = [0, 0];
+        this._spidy.rotation = 0;
         this._villain.setPosition(this._pixiApp?.screen.width ?? 0, this._pixiApp?.screen.height ?? 0, Position.BOTTOM_RIGHT);
         this._villain.orientation = 180;
+        this._villain.velocity = [0, 0];
+        this._villain.rotation = 0;
     }
 
     tick = (delta: number, force: boolean = false) => {

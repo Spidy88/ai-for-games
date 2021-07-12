@@ -1,4 +1,5 @@
 import { Steering, KinematicCharacter, Vector } from "../types";
+import { clamp } from "./random";
 import { add, mult, normalize, length } from "./vectors";
 
 export function standardKinematicUpdate(delta: number, steering: Steering, character: KinematicCharacter) {
@@ -57,12 +58,7 @@ export function kinematicUpdate(delta: number, steering: Steering, character: Ki
         character.velocity = mult(normalize(character.velocity), character.maxSpeed);
     }
 
-    if (character.rotation > character.maxRotation) {
-        character.rotation = character.maxRotation;
-    }
-    if (character.rotation < -character.maxRotation) {
-        character.rotation = -character.maxRotation;
-    }
+    character.rotation = clamp(character.rotation, -character.maxRotation, character.maxRotation);
 }
 
 export function keepOnScreen(character: KinematicCharacter, size: Vector) {

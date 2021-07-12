@@ -1,5 +1,4 @@
 import React from 'react';
-import { Playfield } from '../../components/playfield';
 import { Grid, AlgorithmCard, CardLink } from './explore.css';
 import Data from './explore.data';
 
