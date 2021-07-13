@@ -44,7 +44,8 @@ export class BaseApp implements App {
 
     protected tick(delta: number, force: boolean = false) {}
     private tickWrapper = (delta: number) => {
-        this.tick(delta / 10);
+        // delta is in ms , but we want calculations to be in seconds
+        this.tick(delta / 1000);
     }
 
     registerPixiApp = (pixiApp: PIXI.Application) => {
