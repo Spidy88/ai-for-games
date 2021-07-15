@@ -19,7 +19,7 @@ export function ExplorePage() {
                                         <p>{article.details}</p>
                                     </div>
                                     <div>
-                                        <div style={{ height: '300px' }}>
+                                        <div style={{ height: '350px' }}>
                                             
                                         </div>
                                     </div>

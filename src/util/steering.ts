@@ -35,8 +35,6 @@ export function seekWithRotation(character: KinematicCharacter, target: Kinemati
   let rotation = getShortestRotation(orientation, targetOrientation);
   let linear = mult(direction, maxSpeed);
   let angular = rotation;
-
-  console.log('seek steering: ', { position: character.position, target: target.position, direction, targetDirection, targetOrientation, rotation, linear, angular });
   
   return {
     linear,

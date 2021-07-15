@@ -38,14 +38,15 @@ export class BaseApp implements App {
     step = () => {
         this.pause();
 
-        let stepSize = 1;
+        let stepSize = 0.25;
         this.tick(stepSize, true);
     }
 
     protected tick(delta: number, force: boolean = false) {}
     private tickWrapper = (delta: number) => {
         // delta is in ms , but we want calculations to be in seconds
-        this.tick(delta / 1000);
+        //this.tick(delta);
+        this.tick(this._pixiApp!.ticker.elapsedMS / 1000);
     }
 
     registerPixiApp = (pixiApp: PIXI.Application) => {

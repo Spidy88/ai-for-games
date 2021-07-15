@@ -12,7 +12,7 @@ export const BookCoverImg = styled.img`
 
 export const DemoSection = styled.section`
     display: grid;
-    grid-template-columns: 1fr 30vw;
+    grid-template-columns: 1fr 35vw;
     gap: 1rem;
     margin: 2rem 0;
 `;

@@ -25,6 +25,7 @@ export class Character implements KinematicCharacter {
     private _container: PIXI.Container;
     private _avatar: PIXI.Sprite;
     private _circle: PIXI.Sprite;
+    private _position: Vector;
     private _orientation: number;
     private _rotation: number;
     private _velocity: Vector;
@@ -33,11 +34,12 @@ export class Character implements KinematicCharacter {
 
     constructor(options: CharacterOptions) {
         this.id = uuid();
+        this._position = [0, 0];
         this._orientation = 0;
         this._rotation = 0;
         this._velocity = [0, 0];
-        this._maxSpeed = 2;
-        this._maxRotation = 5;
+        this._maxSpeed = 360;
+        this._maxRotation = 120;
 
         this._container = new PIXI.Container();
         this._avatar = PIXI.Sprite.from(options.avatarUrl);
@@ -67,8 +69,8 @@ export class Character implements KinematicCharacter {
 
     get position() {
         return [
-            this._container.x + this._container.width / 2,
-            this._container.y + this._container.height / 2
+            this._position[0] + this._container.width / 2,
+            this._position[1] + this._container.height / 2
         ];
     }
 
@@ -93,6 +95,8 @@ export class Character implements KinematicCharacter {
 
         this._container.x = x;
         this._container.y = y;
+        this._position[0] = x;
+        this._position[1] = y;
     }
 
     get orientation() {

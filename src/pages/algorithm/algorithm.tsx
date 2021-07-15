@@ -20,7 +20,7 @@ export function AlgorithmPage() {
                 move the villain).
             </p>
 
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 300px', gap: '2rem' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 350px', gap: '2rem' }}>
                 <PlaygroundContainer>
                     <Playfield app={seekApp} />
                 </PlaygroundContainer>
@@ -40,7 +40,7 @@ export function AlgorithmPage() {
                 such as the inability to reach certain targets when the max rotation is too high.
             </p>
 
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 300px', gap: '2rem' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 350px', gap: '2rem' }}>
                 <PlaygroundContainer>
                     <Playfield app={seekWithRotationApp} />
                 </PlaygroundContainer>

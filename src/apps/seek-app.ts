@@ -1,7 +1,7 @@
 import { BaseApp } from './base-app';
 import { Position, Character } from '../models/character';
 import { seek, seekWithRotation } from "../util/steering";
-import { kinematicUpdate } from "../util/update";
+import { kinematicUpdate, clampKinematics } from "../util/update";
 import spidyAvatarUrl from '../assets/spidy-avatar.png';
 import villainAvatarUrl from '../assets/villain-avatar.png';
 
@@ -31,6 +31,11 @@ export class SeekApp extends BaseApp {
     tick = (delta: number, force: boolean = false) => {
         if (!this.isRunning && !force) return;
 
+        window.spidy = {
+            ticker: this._pixiApp!.ticker,
+            delta
+        };
+
         let steering = seek(this._spidy, this._villain);
         kinematicUpdate(delta, steering, this._spidy);
     }
@@ -50,5 +55,10 @@ export class SeekWithRotationApp extends SeekApp {
 
         let steering = seekWithRotation(this._spidy, this._villain);
         kinematicUpdate(delta, steering, this._spidy);
+        clampKinematics(this._spidy);
     }
+}
+
+declare global {
+    interface Window { spidy: any; }
 }
