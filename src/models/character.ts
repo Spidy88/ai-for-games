@@ -38,7 +38,7 @@ export class Character implements KinematicCharacter {
         this._orientation = 0;
         this._rotation = 0;
         this._velocity = [0, 0];
-        this._maxSpeed = 360;
+        this._maxSpeed = 240;
         this._maxRotation = 120;
 
         this._container = new PIXI.Container();

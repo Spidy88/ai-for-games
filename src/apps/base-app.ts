@@ -1,6 +1,7 @@
 import * as PIXI from 'pixi.js';
 import { App } from "../models/app";
 import { Character, Position } from '../models/character';
+import { length, normalize, sub, vectorAsOrientation } from '../util/vectors';
 
 type MouseDragEvent = PIXI.InteractionEvent & {
     isDragging: boolean;
@@ -96,7 +97,15 @@ export class BaseApp implements App {
         function onDragMove(event: MouseDragEvent) {
             if (event.isDragging) {
                 if (self._pixiApp) {
-                    var newPosition = event.data?.getLocalPosition?.(self._pixiApp.stage);
+                    const newPosition = event.data?.getLocalPosition?.(self._pixiApp.stage);
+                    let targetDirection = sub([newPosition.x, newPosition.y], character.position);
+
+                    if (length(targetDirection) > 0.001) {
+                        targetDirection = normalize(targetDirection);
+                        const targetOrientation = vectorAsOrientation(targetDirection, character.orientation);
+                        character.orientation = targetOrientation;
+                    }
+                    
                     character.setPosition(newPosition.x, newPosition.y, Position.CENTER);
                 }
             }

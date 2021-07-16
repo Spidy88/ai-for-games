@@ -1,11 +1,11 @@
 import { BaseApp } from './base-app';
 import { Position, Character } from '../models/character';
-import { seek, seekWithRotation } from "../util/steering";
-import { kinematicUpdate, clampKinematics } from "../util/update";
+import { flee, fleeWithRotation } from "../util/steering";
+import { kinematicUpdate, clampKinematics, keepOnScreenWithBlock } from "../util/update";
 import spidyAvatarUrl from '../assets/spidy-avatar.png';
 import villainAvatarUrl from '../assets/villain-avatar.png';
 
-export class SeekApp extends BaseApp {
+export class FleeApp extends BaseApp {
     protected _spidy: Character;
     protected _villain: Character;
 
@@ -18,7 +18,7 @@ export class SeekApp extends BaseApp {
     }
 
     reset = () => {
-        this._spidy.setPosition(0, 0, Position.TOP_LEFT);
+        this._spidy.setPosition((this._pixiApp?.screen.width ?? 0) / 2, (this._pixiApp?.screen.height ?? 0) / 2, Position.CENTER);
         this._spidy.orientation = 0;
         this._spidy.velocity = [0, 0];
         this._spidy.rotation = 0;
@@ -31,12 +31,13 @@ export class SeekApp extends BaseApp {
     tick = (delta: number, force: boolean = false) => {
         if (!this.isRunning && !force) return;
 
-        let steering = seek(this._spidy, this._villain);
+        let steering = flee(this._spidy, this._villain);
         kinematicUpdate(delta, steering, this._spidy);
+        keepOnScreenWithBlock(this._spidy, [this._pixiApp!.screen.width, this._pixiApp!.screen.height], this._spidy.size * 0.75);
     }
 }
 
-export class SeekWithRotationApp extends SeekApp {
+export class FleeWithRotationApp extends FleeApp {
     constructor() {
         super();
         this._spidy = new Character({ avatarUrl: spidyAvatarUrl });
@@ -48,8 +49,9 @@ export class SeekWithRotationApp extends SeekApp {
     tick = (delta: number, force: boolean = false) => {
         if (!this.isRunning && !force) return;
 
-        let steering = seekWithRotation(this._spidy, this._villain);
+        let steering = fleeWithRotation(this._spidy, this._villain);
         kinematicUpdate(delta, steering, this._spidy);
         clampKinematics(this._spidy);
+        keepOnScreenWithBlock(this._spidy, [this._pixiApp!.screen.width, this._pixiApp!.screen.height], this._spidy.size * 0.75);
     }
 }

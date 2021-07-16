@@ -17,5 +17,5 @@ export const AlgorithmCard = styled.article`
 
 export const CardLink = styled(Link)`
     color: var(--main-text-color);
-  text-decoration: none !important;
+    text-decoration: none !important;
 `;

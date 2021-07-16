@@ -1,11 +1,11 @@
 import { BaseApp } from './base-app';
 import { Position, Character } from '../models/character';
-import { seek, seekWithRotation } from "../util/steering";
+import { arrive, arriveWithRotation } from "../util/steering";
 import { kinematicUpdate, clampKinematics } from "../util/update";
 import spidyAvatarUrl from '../assets/spidy-avatar.png';
 import villainAvatarUrl from '../assets/villain-avatar.png';
 
-export class SeekApp extends BaseApp {
+export class ArriveApp extends BaseApp {
     protected _spidy: Character;
     protected _villain: Character;
 
@@ -31,12 +31,12 @@ export class SeekApp extends BaseApp {
     tick = (delta: number, force: boolean = false) => {
         if (!this.isRunning && !force) return;
 
-        let steering = seek(this._spidy, this._villain);
+        let steering = arrive(this._spidy, this._villain);
         kinematicUpdate(delta, steering, this._spidy);
     }
 }
 
-export class SeekWithRotationApp extends SeekApp {
+export class ArriveWithRotationApp extends ArriveApp {
     constructor() {
         super();
         this._spidy = new Character({ avatarUrl: spidyAvatarUrl });
@@ -48,7 +48,8 @@ export class SeekWithRotationApp extends SeekApp {
     tick = (delta: number, force: boolean = false) => {
         if (!this.isRunning && !force) return;
 
-        let steering = seekWithRotation(this._spidy, this._villain);
+        let steering = arriveWithRotation(this._spidy, this._villain);
+        // Change update function not steering function
         kinematicUpdate(delta, steering, this._spidy);
         clampKinematics(this._spidy);
     }
