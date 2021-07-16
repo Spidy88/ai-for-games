@@ -1,5 +1,5 @@
 import { KinematicCharacter } from "../types";
-import { orientationAsVector, normalize, sub, mult, vectorAsOrientation } from "./vectors";
+import { orientationAsVector, normalize, sub, mult, div, vectorAsOrientation, length } from "./vectors";
 import { getPreferredRotationDirection } from "./angles";
 import { randomBinomial } from "./random";
 
@@ -69,11 +69,25 @@ export function fleeWithRotation(character: KinematicCharacter, target: Kinemati
   };
 }
 
-export function arrive(character: KinematicCharacter, target: KinematicCharacter) {
-  let { maxSpeed } = character;
-  let direction = normalize(sub(target.position, character.position));
-  let linear = mult(direction, maxSpeed);
+type ArriveOptions = {
+  stopRadius: number;
+  timeToTarget: number;
+};
+export function arrive(character: KinematicCharacter, target: KinematicCharacter, options: ArriveOptions) {
+  const { maxSpeed } = character;
+  const { stopRadius, timeToTarget } = options;
+  let direction = sub(target.position, character.position);
+  let distance = length(direction);
+  let linear = div(mult(normalize(direction), maxSpeed), timeToTarget);
   let angular = 0;
+
+  if (distance <= stopRadius) {
+    linear = [0, 0];
+  }
+
+  if (length(linear) > maxSpeed) {
+    linear = mult(normalize(linear), maxSpeed);
+  }
 
   return {
     linear,
@@ -81,14 +95,24 @@ export function arrive(character: KinematicCharacter, target: KinematicCharacter
   };
 }
 
-export function arriveWithRotation(character: KinematicCharacter, target: KinematicCharacter) {
+export function arriveWithRotation(character: KinematicCharacter, target: KinematicCharacter, options: ArriveOptions) {
   let { maxSpeed, maxRotation, orientation } = character;
-  let direction = orientationAsVector(orientation);
+  const { stopRadius, timeToTarget } = options;
+  let direction = sub(target.position, character.position);
+  let distance = length(direction);
   let targetDirection = normalize(sub(target.position, character.position));
   let targetOrientation = vectorAsOrientation(targetDirection, orientation);
   let rotationDirection = getPreferredRotationDirection(orientation, targetOrientation);
-  let linear = mult(direction, maxSpeed);
+  let linear = div(mult(normalize(direction), maxSpeed), timeToTarget);
   let angular = maxRotation * rotationDirection;
+
+  if (distance <= stopRadius) {
+    linear = [0, 0];
+  }
+
+  if (length(linear) > maxSpeed) {
+    linear = mult(normalize(linear), maxSpeed);
+  }
   
   return {
     linear,
