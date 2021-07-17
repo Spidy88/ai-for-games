@@ -20,7 +20,7 @@ export class ArriveApp extends BaseApp {
         this.makeInteractable(this._villain);
         this._characters = [this._spidy, this._villain];
 
-        let stopRadius = this._villain.size * this._scale;
+        let stopRadius = this._villain.size * this._scale * 1.5;
         this._stopCircle = new Graphics();
         this._stopCircle.width = this._stopCircle.height = stopRadius;
         this._stopCircle.lineStyle(2, 0xff0000);
@@ -59,6 +59,7 @@ export class ArriveApp extends BaseApp {
 
         let steering = arrive(this._spidy, this._villain, this._options);
         kinematicUpdate(delta, steering, this._spidy);
+        clampKinematics(this._spidy);
     }
 }
 
@@ -70,7 +71,7 @@ export class ArriveWithRotationApp extends ArriveApp {
         this.makeInteractable(this._villain);
         this._characters = [this._spidy, this._villain];
 
-        let stopRadius = this._villain.size * this._scale;
+        let stopRadius = this._villain.size * this._scale * 1.5;
         this._stopCircle = new Graphics();
         this._stopCircle.width = this._stopCircle.height = stopRadius;
         this._stopCircle.lineStyle(2, 0xff0000);
