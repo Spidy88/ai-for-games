@@ -36,7 +36,7 @@ export function Controls(props: ControlsProps) {
     return (
         <div style={{ padding: 'var(--s300)', backgroundColor: 'var(--main-bg-color)', color: 'var(--main-text-color)', fontSize: 'var(--s400)' }}>
             <button disabled={app.isRunning} onClick={app.play}>Play</button>
-            <button disabled={!app.isRunning} onClick={app.pause}>Pause</button>
+            <button disabled={!app.isRunning} onClick={app.pause}>Stop</button>
             <button onClick={app.reset}>Reset</button>
             <button onClick={app.step}>Step</button>
 

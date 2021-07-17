@@ -12,7 +12,7 @@ export const BookCoverImg = styled.img`
 
 export const DemoSection = styled.section`
     display: grid;
-    grid-template-columns: 1fr 30vw;
+    grid-template-columns: 1fr 35vw;
     gap: 1rem;
     margin: 2rem 0;
 `;
@@ -20,7 +20,7 @@ export const DemoSection = styled.section`
 export const PlaygroundContainer = styled.div`
     outline: 1px solid var(--main-bg-color);
     background-color: var(--main-bg-color);
-    height: 300px;
+    height: 400px;
 `;
 
 export const ControlsContainer = styled.div`

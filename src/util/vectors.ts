@@ -84,11 +84,11 @@ export function orientationAsVector(orientation: number) {
   ];
 }
 
-export function vectorAsOrientation(velocity: Vector) {
+export function vectorAsOrientation(velocity: Vector, current: number) {
   if (length(velocity) === 0) {
-    return -1;
+    return current;
   }
 
-  return radiansAsDegrees(Math.atan2(velocity[1], velocity[0]));
+  return radiansAsDegrees(Math.atan2(-velocity[1], velocity[0]));
 }
   
