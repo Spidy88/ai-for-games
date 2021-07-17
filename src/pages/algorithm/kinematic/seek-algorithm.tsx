@@ -1,7 +1,7 @@
-import { Playfield,  } from "../../components/playfield";
-import { Controls } from "../../components/controls";
-import { PlaygroundContainer, ControlsContainer } from "../landing/landing.css";
-import { SeekApp, SeekWithRotationApp } from "../../apps/seek-app";
+import { Playfield,  } from "../../../components/playfield";
+import { Controls } from "../../../components/controls";
+import { PlaygroundContainer, ControlsContainer } from "../../landing/landing.css";
+import { SeekApp, SeekWithRotationApp } from "../../../apps/seek-app";
 import { useState } from "react";
 
 export function SeekAlgorithm() {

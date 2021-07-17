@@ -1,7 +1,7 @@
-import { Playfield,  } from "../../components/playfield";
-import { Controls } from "../../components/controls";
-import { PlaygroundContainer, ControlsContainer } from "../landing/landing.css";
-import { FleeApp, FleeWithRotationApp } from "../../apps/flee-app";
+import { Playfield,  } from "../../../components/playfield";
+import { Controls } from "../../../components/controls";
+import { PlaygroundContainer, ControlsContainer } from "../../landing/landing.css";
+import { FleeApp, FleeWithRotationApp } from "../../../apps/flee-app";
 import { useState } from "react";
 
 export function FleeAlgorithm() {

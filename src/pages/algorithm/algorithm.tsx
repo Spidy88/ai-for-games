@@ -1,8 +1,8 @@
 import { useParams } from 'react-router-dom';
-import { WanderAlgorithm } from "./wander-algorithm";
-import { SeekAlgorithm } from "./seek-algorithm";
-import { FleeAlgorithm } from "./flee-algorithm";
-import { ArriveAlgorithm } from "./arrive-algorithm";
+import { WanderAlgorithm } from "./kinematic/wander-algorithm";
+import { SeekAlgorithm } from "./kinematic/seek-algorithm";
+import { FleeAlgorithm } from "./kinematic/flee-algorithm";
+import { ArriveAlgorithm } from "./kinematic/arrive-algorithm";
 
 const algMap = new Map([
     ['kinematic-wander', WanderAlgorithm],

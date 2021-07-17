@@ -1,7 +1,7 @@
-import { Playfield,  } from "../../components/playfield";
-import { Controls } from "../../components/controls";
-import { PlaygroundContainer, ControlsContainer } from "../landing/landing.css";
-import { ArriveApp, ArriveWithRotationApp } from "../../apps/arrive-app";
+import { Playfield,  } from "../../../components/playfield";
+import { Controls } from "../../../components/controls";
+import { PlaygroundContainer, ControlsContainer } from "../../landing/landing.css";
+import { ArriveApp, ArriveWithRotationApp } from "../../../apps/arrive-app";
 import { useState } from "react";
 
 export function ArriveAlgorithm() {
@@ -35,8 +35,8 @@ export function ArriveAlgorithm() {
                 hits its destination, rather than jittering, it shoots past the target because its unable to turn 
                 fast enough and can only move in the direction its facing, slowly rotating to face its target again. 
                 The arrive algorithm doesn't solve the issue with traveling like a snake but it should prevent 
-                shooting past the target as long as the max rotation is great enough to face the target before the 
-                target is reached. We could introduce similar logic as a stop radius for the max rotation as well.
+                shooting past the target as long as the max rotation is large enough to face the target before the 
+                target is reached.
             </p>
 
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 350px', gap: '2rem' }}>

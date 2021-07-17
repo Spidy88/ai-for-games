@@ -82,7 +82,10 @@ export function arrive(character: KinematicCharacter, target: KinematicCharacter
   let angular = 0;
 
   if (distance <= stopRadius) {
-    linear = [0, 0];
+    return {
+      linear: [0, 0],
+      angular: 0
+    };
   }
 
   if (length(linear) > maxSpeed) {
@@ -108,7 +111,10 @@ export function arriveWithRotation(character: KinematicCharacter, target: Kinema
   let angular = maxRotation * rotationDirection;
 
   if (distance <= stopRadius) {
-    linear = [0, 0];
+    return {
+      linear: [0, 0],
+      angular: 0
+    };
   }
 
   if (length(linear) > maxSpeed) {
