@@ -11,6 +11,7 @@ export class BaseApp implements App {
     protected _isRunning: boolean = false;
     protected _pixiApp: PIXI.Application | null = null;
     protected _characters: Character[];
+    protected _scale: number = 0.1;
 
     constructor() {
         this._characters = [];
@@ -55,7 +56,7 @@ export class BaseApp implements App {
         this._pixiApp = pixiApp;
 
         for( let character of this._characters) {
-            character.size = pixiApp.screen.width / 10;
+            character.size = pixiApp.screen.width * this._scale;
             pixiApp.stage.addChild(character.view);
         }
 

@@ -20,13 +20,11 @@ export class ArriveApp extends BaseApp {
         this.makeInteractable(this._villain);
         this._characters = [this._spidy, this._villain];
 
-        let stopRadius = (this._spidy.size + this._villain.size) / 2;
+        let stopRadius = this._villain.size * this._scale;
         this._stopCircle = new Graphics();
         this._stopCircle.width = this._stopCircle.height = stopRadius;
         this._stopCircle.lineStyle(2, 0xff0000);
         this._stopCircle.drawCircle(0, 0, stopRadius);
-        console.log('circle: ', this._stopCircle.width);
-        console.log('radius: ', stopRadius);
 
         this._options = {
             stopRadius,
@@ -53,14 +51,14 @@ export class ArriveApp extends BaseApp {
     }
 
     tick = (delta: number, force: boolean = false) => {
+        // update circle position to match villain position (even when paused because of drag interaction)
+        this._stopCircle.position.x = this._villain.position[0];
+        this._stopCircle.position.y = this._villain.position[1];
+
         if (!this.isRunning && !force) return;
 
         let steering = arrive(this._spidy, this._villain, this._options);
         kinematicUpdate(delta, steering, this._spidy);
-
-        // update circle position to match villain position
-        this._stopCircle.position.x = (this._villain.position[0] - this._stopCircle.width / 2);
-        this._stopCircle.position.y = (this._villain.position[1] - this._stopCircle.height / 2);
     }
 }
 
@@ -71,9 +69,24 @@ export class ArriveWithRotationApp extends ArriveApp {
         this._villain = new Character({ avatarUrl: villainAvatarUrl });
         this.makeInteractable(this._villain);
         this._characters = [this._spidy, this._villain];
+
+        let stopRadius = this._villain.size * this._scale;
+        this._stopCircle = new Graphics();
+        this._stopCircle.width = this._stopCircle.height = stopRadius;
+        this._stopCircle.lineStyle(2, 0xff0000);
+        this._stopCircle.drawCircle(0, 0, stopRadius);
+
+        this._options = {
+            stopRadius,
+            timeToTarget: 0.1
+        };
     }
     
     tick = (delta: number, force: boolean = false) => {
+        // update circle position to match villain position (even when paused because of drag interaction)
+        this._stopCircle.position.x = this._villain.position[0];
+        this._stopCircle.position.y = this._villain.position[1];
+        
         if (!this.isRunning && !force) return;
 
         let steering = arriveWithRotation(this._spidy, this._villain, this._options);
