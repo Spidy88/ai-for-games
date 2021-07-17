@@ -69,7 +69,7 @@ export function fleeWithRotation(character: KinematicCharacter, target: Kinemati
   };
 }
 
-type ArriveOptions = {
+export type ArriveOptions = {
   stopRadius: number;
   timeToTarget: number;
 };

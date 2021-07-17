@@ -59,9 +59,13 @@ export class BaseApp implements App {
             pixiApp.stage.addChild(character.view);
         }
 
+        this.postRegister(pixiApp);
+
         this.reset();
         this._pixiApp.ticker.add(this.tickWrapper);
     }
+
+    protected postRegister = (pixiApp: PIXI.Application) => {}
 
     unregisterPixiApp = () => {
         if (!this._pixiApp) throw new Error('App is not registered to a PIXI App');

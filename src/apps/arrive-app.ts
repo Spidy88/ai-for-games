@@ -1,13 +1,17 @@
+import * as PIXI from 'pixi.js';
 import { BaseApp } from './base-app';
 import { Position, Character } from '../models/character';
-import { arrive, arriveWithRotation } from "../util/steering";
+import { arrive, arriveWithRotation, ArriveOptions } from "../util/steering";
 import { kinematicUpdate, clampKinematics } from "../util/update";
 import spidyAvatarUrl from '../assets/spidy-avatar.png';
 import villainAvatarUrl from '../assets/villain-avatar.png';
+import { Graphics } from 'pixi.js';
 
 export class ArriveApp extends BaseApp {
     protected _spidy: Character;
     protected _villain: Character;
+    protected _stopCircle: Graphics;
+    protected _options: ArriveOptions;
 
     constructor() {
         super();
@@ -15,6 +19,23 @@ export class ArriveApp extends BaseApp {
         this._villain = new Character({ avatarUrl: villainAvatarUrl, hideRotation: true });
         this.makeInteractable(this._villain);
         this._characters = [this._spidy, this._villain];
+
+        let stopRadius = (this._spidy.size + this._villain.size) / 2;
+        this._stopCircle = new Graphics();
+        this._stopCircle.width = this._stopCircle.height = stopRadius;
+        this._stopCircle.lineStyle(2, 0xff0000);
+        this._stopCircle.drawCircle(0, 0, stopRadius);
+        console.log('circle: ', this._stopCircle.width);
+        console.log('radius: ', stopRadius);
+
+        this._options = {
+            stopRadius,
+            timeToTarget: 0.1
+        };
+    }
+
+    protected postRegister = (pixiApp: PIXI.Application) => {
+        pixiApp.stage.addChild(this._stopCircle);
     }
 
     reset = () => {
@@ -26,13 +47,20 @@ export class ArriveApp extends BaseApp {
         this._villain.orientation = 180;
         this._villain.velocity = [0, 0];
         this._villain.rotation = 0;
+        this._stopCircle.position.x = (this._villain.position[0] - this._stopCircle.width / 2);
+        this._stopCircle.position.y = (this._villain.position[1] - this._stopCircle.height / 2);
+        // TODO: Stop circle radius?
     }
 
     tick = (delta: number, force: boolean = false) => {
         if (!this.isRunning && !force) return;
 
-        let steering = arrive(this._spidy, this._villain);
+        let steering = arrive(this._spidy, this._villain, this._options);
         kinematicUpdate(delta, steering, this._spidy);
+
+        // update circle position to match villain position
+        this._stopCircle.position.x = (this._villain.position[0] - this._stopCircle.width / 2);
+        this._stopCircle.position.y = (this._villain.position[1] - this._stopCircle.height / 2);
     }
 }
 
@@ -48,7 +76,7 @@ export class ArriveWithRotationApp extends ArriveApp {
     tick = (delta: number, force: boolean = false) => {
         if (!this.isRunning && !force) return;
 
-        let steering = arriveWithRotation(this._spidy, this._villain);
+        let steering = arriveWithRotation(this._spidy, this._villain, this._options);
         // Change update function not steering function
         kinematicUpdate(delta, steering, this._spidy);
         clampKinematics(this._spidy);
