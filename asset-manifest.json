@@ -1,22 +1,26 @@
 {
   "files": {
     "main.css": "/ai-for-games/static/css/main.d52cf1f3.chunk.css",
-    "main.js": "/ai-for-games/static/js/main.09ed13fe.chunk.js",
-    "main.js.map": "/ai-for-games/static/js/main.09ed13fe.chunk.js.map",
+    "main.js": "/ai-for-games/static/js/main.beacce5d.chunk.js",
+    "main.js.map": "/ai-for-games/static/js/main.beacce5d.chunk.js.map",
     "runtime-main.js": "/ai-for-games/static/js/runtime-main.d1a3f08a.js",
     "runtime-main.js.map": "/ai-for-games/static/js/runtime-main.d1a3f08a.js.map",
-    "static/js/2.46b546da.chunk.js": "/ai-for-games/static/js/2.46b546da.chunk.js",
-    "static/js/2.46b546da.chunk.js.map": "/ai-for-games/static/js/2.46b546da.chunk.js.map",
+    "static/js/2.ce9e0757.chunk.js": "/ai-for-games/static/js/2.ce9e0757.chunk.js",
+    "static/js/2.ce9e0757.chunk.js.map": "/ai-for-games/static/js/2.ce9e0757.chunk.js.map",
     "index.html": "/ai-for-games/index.html",
     "static/css/main.d52cf1f3.chunk.css.map": "/ai-for-games/static/css/main.d52cf1f3.chunk.css.map",
-    "static/js/2.46b546da.chunk.js.LICENSE.txt": "/ai-for-games/static/js/2.46b546da.chunk.js.LICENSE.txt",
+    "static/js/2.ce9e0757.chunk.js.LICENSE.txt": "/ai-for-games/static/js/2.ce9e0757.chunk.js.LICENSE.txt",
     "static/media/book-cover.905d2abc.jpg": "/ai-for-games/static/media/book-cover.905d2abc.jpg",
-    "static/media/spidy-avatar.29f948a6.png": "/ai-for-games/static/media/spidy-avatar.29f948a6.png"
+    "static/media/explore.a600c9ed.svg": "/ai-for-games/static/media/explore.a600c9ed.svg",
+    "static/media/home.6660b146.svg": "/ai-for-games/static/media/home.6660b146.svg",
+    "static/media/playground.8b4ea41b.svg": "/ai-for-games/static/media/playground.8b4ea41b.svg",
+    "static/media/spidy-avatar.29f948a6.png": "/ai-for-games/static/media/spidy-avatar.29f948a6.png",
+    "static/media/villain-avatar.94a91a77.png": "/ai-for-games/static/media/villain-avatar.94a91a77.png"
   },
   "entrypoints": [
     "static/js/runtime-main.d1a3f08a.js",
-    "static/js/2.46b546da.chunk.js",
+    "static/js/2.ce9e0757.chunk.js",
     "static/css/main.d52cf1f3.chunk.css",
-    "static/js/main.09ed13fe.chunk.js"
+    "static/js/main.beacce5d.chunk.js"
   ]
 }
