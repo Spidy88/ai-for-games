@@ -28,7 +28,7 @@ export class ArriveApp extends BaseApp {
 
         this._options = {
             stopRadius,
-            timeToTarget: 0.1
+            timeToTarget: 2
         };
     }
 
@@ -79,7 +79,7 @@ export class ArriveWithRotationApp extends ArriveApp {
 
         this._options = {
             stopRadius,
-            timeToTarget: 0.1
+            timeToTarget: 2
         };
     }
     
@@ -87,7 +87,7 @@ export class ArriveWithRotationApp extends ArriveApp {
         // update circle position to match villain position (even when paused because of drag interaction)
         this._stopCircle.position.x = this._villain.position[0];
         this._stopCircle.position.y = this._villain.position[1];
-        
+
         if (!this.isRunning && !force) return;
 
         let steering = arriveWithRotation(this._spidy, this._villain, this._options);

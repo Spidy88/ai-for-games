@@ -78,7 +78,7 @@ export function arrive(character: KinematicCharacter, target: KinematicCharacter
   const { stopRadius, timeToTarget } = options;
   let direction = sub(target.position, character.position);
   let distance = length(direction);
-  let linear = div(mult(normalize(direction), maxSpeed), timeToTarget);
+  let linear = div(direction, timeToTarget);
   let angular = 0;
 
   if (distance <= stopRadius) {
@@ -104,10 +104,10 @@ export function arriveWithRotation(character: KinematicCharacter, target: Kinema
 
   let targetDirection = sub(target.position, character.position);
   let distance = length(targetDirection);
-  let direction = normalize(orientationAsVector(orientation));
+  let direction = orientationAsVector(orientation);
   let targetOrientation = vectorAsOrientation(normalize(targetDirection), orientation);
   let rotationDirection = getPreferredRotationDirection(orientation, targetOrientation);
-  let linear = div(mult(normalize(direction), maxSpeed), timeToTarget);
+  let linear = mult(direction, distance / timeToTarget);
   let angular = maxRotation * rotationDirection;
 
   if (distance <= stopRadius) {
