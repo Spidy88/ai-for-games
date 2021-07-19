@@ -2,7 +2,7 @@ import { BaseApp } from './base-app';
 import { Position, Character } from '../models/character';
 import { wander } from "../util/steering";
 import { kinematicUpdate, keepOnScreenWithSeamless, clampKinematics } from "../util/update";
-import avatarUrl from '../assets/spidy-avatar.png';
+import avatarUrl from '../assets/images/spidy-avatar.png';
 
 export class WanderApp extends BaseApp {
     private _spidy: Character;

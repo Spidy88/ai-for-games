@@ -1,7 +1,7 @@
 import * as PIXI from "pixi.js";
 import { v4 as uuid } from "uuid";
 import { KinematicCharacter, Vector } from "../types";
-import orientationCircle from '../assets/character-circle.png';
+import orientationCircle from '../assets/images/character-circle.png';
 
 export enum Position {
     CENTER,

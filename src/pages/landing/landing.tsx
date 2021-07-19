@@ -1,4 +1,4 @@
-import bookCover from '../../assets/book-cover.jpg';
+import bookCover from '../../assets/images/book-cover.jpg';
 import { Playfield } from '../../components/playfield';
 import { Controls } from '../../components/controls';
 import {

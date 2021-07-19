@@ -2,8 +2,8 @@ import { BaseApp } from './base-app';
 import { Position, Character } from '../models/character';
 import { seek, seekWithRotation } from "../util/steering";
 import { kinematicUpdate, clampKinematics } from "../util/update";
-import spidyAvatarUrl from '../assets/spidy-avatar.png';
-import villainAvatarUrl from '../assets/villain-avatar.png';
+import spidyAvatarUrl from '../assets/images/spidy-avatar.png';
+import villainAvatarUrl from '../assets/images/villain-avatar.png';
 
 export class SeekApp extends BaseApp {
     protected _spidy: Character;
