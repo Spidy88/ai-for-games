@@ -56,6 +56,31 @@ function NavItem(props: NavItemProps) {
   );
 }
 
+function NavBar() {
+  const toggleNavbar = (e: React.MouseEvent) => {
+    const html = document.documentElement;
+    html.classList.toggle('nav-open');
+    e.currentTarget.parentElement?.classList.toggle('toggled');
+  };
+
+  return (
+    <nav className="navbar navbar-expand-lg navbar-absolute fixed-top navbar-transparent">
+      <div className="container-fluid">
+        <div className="navbar-wrapper">
+          <div className="navbar-toggle">
+            <button type="button" className="navbar-toggler" onClick={toggleNavbar}>
+              <span className="navbar-toggler-bar bar1"></span>
+              <span className="navbar-toggler-bar bar2"></span>
+              <span className="navbar-toggler-bar bar3"></span>
+            </button>
+          </div>
+          <div className="navbar-brand">Page title</div>
+        </div>
+      </div>
+    </nav>
+  );
+}
+
 function Footer() {
   return (
     <footer className="footer" style={{ position: 'absolute', bottom: 0, width: '-webkit-fill-available' }}>
@@ -90,21 +115,8 @@ ReactDOM.render(
       <div className="wrapper ">
         <Sidebar />
 
-        <div className="main-panel" style={{ height: '100vh' }}>
-          <nav className="navbar navbar-expand-lg navbar-absolute fixed-top navbar-transparent">
-            <div className="container-fluid">
-              <div className="navbar-wrapper">
-                <div className="navbar-toggle">
-                  <button type="button" className="navbar-toggler">
-                    <span className="navbar-toggler-bar bar1"></span>
-                    <span className="navbar-toggler-bar bar2"></span>
-                    <span className="navbar-toggler-bar bar3"></span>
-                  </button>
-                </div>
-                <div className="navbar-brand">Page title</div>
-              </div>
-            </div>
-          </nav>
+        <div className="main-panel" style={{ minHeight: '100vh' }}>
+          <NavBar />
 
           <div className="content">
             <Switch>
