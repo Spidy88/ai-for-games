@@ -1,6 +1,6 @@
-import { Steering, KinematicCharacter, Vector } from "../types";
-import { clamp } from "./random";
-import { add, mult, normalize, length } from "./vectors";
+import { Steering, KinematicCharacter, Vector } from '../types';
+import { clamp } from './random';
+import { add, mult, normalize, length } from './vectors';
 
 export function standardKinematicUpdate(delta: number, steering: Steering, character: KinematicCharacter) {
     let half_t_sq = 0.5 * delta * delta;

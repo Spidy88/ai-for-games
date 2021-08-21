@@ -1,7 +1,7 @@
 import { AIvsPlayerApp } from '../ai-vs-player-app';
 import { Position } from '../../models/character';
-import { dynamicFlee, dynamicFleeOmnidirectional, dynamicFleeWithRotation } from "../../util/steering";
-import { newtonEuler1Update, keepOnScreenWithBlock } from "../../util/update";
+import { dynamicFlee, dynamicFleeOmnidirectional, dynamicFleeWithRotation } from '../../util/steering';
+import { newtonEuler1Update, keepOnScreenWithBlock } from '../../util/update';
 
 export class FleeApp extends AIvsPlayerApp {
     constructor() {

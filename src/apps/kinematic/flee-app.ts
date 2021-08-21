@@ -1,7 +1,7 @@
 import { AIvsPlayerApp } from '../ai-vs-player-app';
 import { Position } from '../../models/character';
-import { flee, fleeWithRotation } from "../../util/steering";
-import { kinematicUpdate, keepOnScreenWithBlock } from "../../util/update";
+import { flee, fleeWithRotation } from '../../util/steering';
+import { kinematicUpdate, keepOnScreenWithBlock } from '../../util/update';
 
 export class FleeApp extends AIvsPlayerApp {
     constructor() {

@@ -7,7 +7,7 @@ export function add(v1: Vector, v2: VectorLike) {
     }
   
     if (v1.length !== v2.length) {
-        throw new Error("Cannot add two vectors of different shapes");
+        throw new Error('Cannot add two vectors of different shapes');
     }
 
     return _addV(v1, v2);
@@ -19,7 +19,7 @@ export function sub(v1: Vector, v2: VectorLike) {
     }
 
     if (v1.length !== v2.length) {
-        throw new Error("Cannot add two vectors of different shapes");
+        throw new Error('Cannot add two vectors of different shapes');
     }
 
     let v2Neg = v2.map((v) => -v);
@@ -32,7 +32,7 @@ export function mult(v1: Vector, v2: VectorLike) {
     }
 
     if (v1.length !== v2.length) {
-        throw new Error("Cannot add two vectors of different shapes");
+        throw new Error('Cannot add two vectors of different shapes');
     }
 
     return _multV(v1, v2);
@@ -44,7 +44,7 @@ export function div(v1: Vector, v2: VectorLike) {
     }
 
     if (v1.length !== v2.length) {
-      throw new Error("Cannot add two vectors of different shapes");
+      throw new Error('Cannot add two vectors of different shapes');
     }
 
     let v2Inv = v2.map((v) => 1 / v);

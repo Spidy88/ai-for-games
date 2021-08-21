@@ -1,7 +1,7 @@
-import { DynamicCharacter, KinematicCharacter } from "../types";
-import { orientationAsVector, normalize, sub, mult, div, vectorAsOrientation, length } from "./vectors";
-import { getPreferredRotationDirection, getShortestRotation } from "./angles";
-import { randomBinomial } from "./random";
+import { DynamicCharacter, KinematicCharacter } from '../types';
+import { orientationAsVector, normalize, sub, mult, div, vectorAsOrientation, length } from './vectors';
+import { getPreferredRotationDirection, getShortestRotation } from './angles';
+import { randomBinomial } from './random';
 
 export function wander(character: KinematicCharacter) {
   let { maxSpeed, maxRotation } = character;

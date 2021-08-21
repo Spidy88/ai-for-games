@@ -1,5 +1,5 @@
 import * as PIXI from 'pixi.js';
-import { App } from "../models/app";
+import { App } from '../models/app';
 import { Character } from '../models/character';
 
 export class BaseApp implements App {

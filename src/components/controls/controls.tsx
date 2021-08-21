@@ -1,7 +1,7 @@
-import { useEffect } from "react";
-import { App } from "../../models/app";
-import { CharacterControls } from "./character-controls";
-import { useRerender } from "../../util/hooks";
+import { useEffect } from 'react';
+import { App } from '../../models/app';
+import { CharacterControls } from './character-controls';
+import { useRerender } from '../../util/hooks';
 
 export type ControlsProps = {
     app: App

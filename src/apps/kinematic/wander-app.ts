@@ -1,6 +1,6 @@
 import { SoloAIApp } from '../solo-ai-app';
-import { wander } from "../../util/steering";
-import { kinematicUpdate, keepOnScreenWithSeamless } from "../../util/update";
+import { wander } from '../../util/steering';
+import { kinematicUpdate, keepOnScreenWithSeamless } from '../../util/update';
 
 export class WanderApp extends SoloAIApp {
     onTick = (delta: number) => {

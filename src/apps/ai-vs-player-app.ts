@@ -67,16 +67,16 @@ export class AIvsPlayerApp extends BaseApp {
         container.interactive = container.buttonMode = true;
         container
             // events for drag start
-            .on("mousedown", onDragStart)
-            .on("touchstart", onDragStart)
+            .on('mousedown', onDragStart)
+            .on('touchstart', onDragStart)
             // events for drag end
-            .on("mouseup", onDragEnd)
-            .on("mouseupoutside", onDragEnd)
-            .on("touchend", onDragEnd)
-            .on("touchendoutside", onDragEnd)
+            .on('mouseup', onDragEnd)
+            .on('mouseupoutside', onDragEnd)
+            .on('touchend', onDragEnd)
+            .on('touchendoutside', onDragEnd)
             // events for drag move
-            .on("mousemove", onDragMove)
-            .on("touchmove", onDragMove);
+            .on('mousemove', onDragMove)
+            .on('touchmove', onDragMove);
 
         function onDragStart(event: MouseDragEvent) {
             event.isDragging = true;

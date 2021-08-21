@@ -1,6 +1,6 @@
-import * as PIXI from "pixi.js";
-import { v4 as uuid } from "uuid";
-import { DynamicCharacter, Vector } from "../types";
+import * as PIXI from 'pixi.js';
+import { v4 as uuid } from 'uuid';
+import { DynamicCharacter, Vector } from '../types';
 import orientationCircle from '../assets/character-circle.png';
 
 export enum Position {

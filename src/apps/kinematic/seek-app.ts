@@ -1,6 +1,6 @@
 import { AIvsPlayerApp } from '../ai-vs-player-app';
-import { seek, seekWithRotation } from "../../util/steering";
-import { kinematicUpdate } from "../../util/update";
+import { seek, seekWithRotation } from '../../util/steering';
+import { kinematicUpdate } from '../../util/update';
 
 export class SeekApp extends AIvsPlayerApp {
     onTick = (delta: number) => {

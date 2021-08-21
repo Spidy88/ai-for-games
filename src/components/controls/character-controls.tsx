@@ -1,6 +1,6 @@
-import { useEffect, useRef } from "react";
-import round from "lodash/round";
-import { length } from "../../util/vectors";
+import { useEffect, useRef } from 'react';
+import round from 'lodash/round';
+import { length } from '../../util/vectors';
 import { Character } from '../../models/character';
 
 export type CharacterControlsProps = {
