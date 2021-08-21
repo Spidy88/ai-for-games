@@ -298,7 +298,7 @@ export function dynamicVelocityMatch(character: DynamicCharacter, target: Dynami
   const timeToTarget = 0.1;
   const { maxAcceleration } = character;
 
-  let linear = div(sub(target.position, character.position), timeToTarget);
+  let linear = div(sub(target.velocity, character.velocity), timeToTarget);
   if (length(linear) > maxAcceleration) {
     linear = mult(normalize(linear), maxAcceleration);
   }
