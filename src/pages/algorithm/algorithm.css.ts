@@ -1,5 +1,9 @@
 import styled from 'styled-components';
 
+export const PageContainer = styled.div`
+    padding-bottom: 10vh;
+`;
+
 export const PlaygroundContainer = styled.div`
     outline: 1px solid var(--main-bg-color);
     background-color: var(--main-bg-color);

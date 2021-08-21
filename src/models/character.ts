@@ -1,6 +1,7 @@
 import * as PIXI from 'pixi.js';
 import { v4 as uuid } from 'uuid';
 import { DynamicCharacter, Vector } from '../types';
+import { length } from '../util/vectors';
 import orientationCircle from '../assets/character-circle.png';
 
 export enum Position {
@@ -118,5 +119,9 @@ export class Character implements DynamicCharacter {
 
     set size(size: number) {
         this._container.width = this._container.height = size;
+    }
+
+    get speed() {
+        return length(this.velocity);
     }
 }

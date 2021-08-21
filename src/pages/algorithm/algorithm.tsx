@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { Playfield } from '../../components/playfield';
 import { Controls } from '../../components/controls';
 import { algorithmMap, AlgorithmSectionData } from '../../data/algorithms.data';
-import { MainGrid, PlaygroundContainer, ControlsContainer } from './algorithm.css';
+import { PageContainer, MainGrid, PlaygroundContainer, ControlsContainer } from './algorithm.css';
 
 export function AlgorithmPage() {
     let { algorithm } = useParams<{ algorithm: string }>();
@@ -11,7 +11,7 @@ export function AlgorithmPage() {
 
     const algorithmData = algorithmMap.get(algorithm)!;
     return (
-        <>
+        <PageContainer>
             <h1>{algorithmData.title}</h1>
             <p>
                 {algorithmData.details}
@@ -20,7 +20,7 @@ export function AlgorithmPage() {
             {algorithmData.sections.map((section, i) => (
                 <AlgorithmSection key={i} data={section} />
             ))}
-        </>
+        </PageContainer>
     );
 }
 

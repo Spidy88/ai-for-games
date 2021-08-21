@@ -2,6 +2,7 @@
 import { AIvsPlayerApp, Options } from '../ai-vs-player-app';
 import { arrive, arriveWithRotation, ArriveOptions } from '../../util/steering';
 import { kinematicUpdate, stop } from '../../util/update';
+import { ControlType, RangeControl } from '../../models/app';
 // import { Graphics } from 'pixi.js';
 
 export class ArriveApp extends AIvsPlayerApp {
@@ -10,8 +11,9 @@ export class ArriveApp extends AIvsPlayerApp {
 
     constructor(options: Options = {}) {
         super(options);
+        const self = this;
 
-        let stopRadius = this._villain.size * this._scale * 1.5;
+        let stopRadius = ~~(this._villain.size * this._scale * 1.5);
         // this._stopCircle = new Graphics();
         // this._stopCircle.width = this._stopCircle.height = stopRadius;
         // this._stopCircle.lineStyle(2, 0xff0000);
@@ -21,6 +23,32 @@ export class ArriveApp extends AIvsPlayerApp {
             stopRadius,
             timeToTarget: 2
         };
+
+        this._controls.push({
+            type: ControlType.Range,
+            label: 'Stop Radius',
+            min: 0,
+            max: 50,
+            step: 1,
+            get value() {
+                return self._options.stopRadius;
+            },
+            onChange(value: number) {
+                self._options.stopRadius = value;
+            }
+        } as RangeControl, {
+            type: ControlType.Range,
+            label: 'Time to Target (ms)',
+            min: 100,
+            max: 5000,
+            step: 100,
+            get value() {
+                return self._options.timeToTarget * 1000;
+            },
+            onChange(value: number) {
+                self._options.timeToTarget = value / 1000;
+            }
+        } as RangeControl);
     }
 
     // protected postRegister = (pixiApp: PIXI.Application) => {

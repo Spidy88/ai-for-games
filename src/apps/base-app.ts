@@ -1,23 +1,37 @@
 import * as PIXI from 'pixi.js';
-import { App } from '../models/app';
+import { App, Control, IWatcher } from '../models/app';
 import { Character } from '../models/character';
 
 export class BaseApp implements App {
     protected _isRunning: boolean = false;
     protected _pixiApp: PIXI.Application | null = null;
     protected _characters: Character[];
+    protected _watchers: IWatcher[];
+    protected _debugWatchers: IWatcher[];
+    protected _controls: Control[];
     protected _scale: number = 0.1;
 
     constructor() {
         this._characters = [];
+        this._watchers = [];
+        this._debugWatchers = [];
+        this._controls = [];
     }
 
     get isRunning() {
         return this._isRunning;
     }
 
-    get characters() {
-        return this._characters;
+    get controls() {
+        return this._controls;
+    }
+
+    get watchers() {
+        return this._watchers;
+    }
+
+    get debugWatchers() {
+        return this._debugWatchers;
     }
 
     play = () => {

@@ -1,6 +1,7 @@
 import * as PIXI from 'pixi.js';
 import { BaseApp } from './base-app';
 import { Position, Character } from '../models/character';
+import { ControlType, RangeControl } from '../models/app';
 import { length, normalize, sub, vectorAsOrientation } from '../util/vectors';
 import spidyAvatarUrl from '../assets/spidy-avatar.png';
 import villainAvatarUrl from '../assets/villain-avatar.png';
@@ -21,11 +22,103 @@ export class AIvsPlayerApp extends BaseApp {
 
     constructor({ aiPosition = Position.TOP_LEFT, withRotation = false }: Options = {}) {
         super();
+        const self = this;
+
         this._aiPosition = aiPosition;
         this._spidy = new Character({ avatarUrl: spidyAvatarUrl, hideRotation: !withRotation });
         this._villain = new Character({ avatarUrl: villainAvatarUrl, hideRotation: !withRotation });
         this.makeInteractable(this._villain);
         this._characters = [this._spidy, this._villain];
+        this._watchers = this._watchers = [{
+            label: 'Position',
+            get value() {
+                let formattedPosition = self._spidy.position
+                    .map((v) => ~~v)
+                    .join(', ');
+                return `(${formattedPosition})`;
+            }
+        }, {
+            label: 'Velocity',
+            get value() {
+                let formattedVelocity = self._spidy.velocity
+                    .map((v) => ~~v)
+                    .join(', ');
+                return `(${formattedVelocity})`;
+            }
+        }, {
+            label: 'Orientation',
+            get value() {
+                return String(~~self._spidy.orientation);
+            }
+        }, {
+            label: 'Speed',
+            get value() {
+                return String(~~self._spidy.speed);
+            }
+        }, {
+            label: 'Rotation',
+            get value() {
+                return String(~~self._spidy.rotation);
+            }
+        }];
+        this._watchers = [{
+            label: 'Position',
+            get value() {
+                let formattedVelocity = self._spidy.position
+                    .map((v) => ~~v)
+                    .join(', ');
+                return `(${formattedVelocity})`;
+            },
+        }, {
+            label: 'Orientation',
+            get value() {
+                return String(~~self._spidy.orientation);
+            }
+        }, {
+            label: 'Speed',
+            get value() {
+                return String(~~self._spidy.speed);
+            }
+        }, {
+            label: 'Rotation',
+            get value() {
+                return String(~~self._spidy.rotation);
+            }
+        }];
+        this._debugWatchers = [{
+            label: 'Velocity',
+            get value() {
+                let formattedVelocity = self._spidy.velocity
+                    .map((v) => ~~v)
+                    .join(', ');
+                return `(${formattedVelocity})`;
+            },
+        }];
+        this._controls = [{
+            type: ControlType.Range,
+            label: 'Max Speed',
+            min: 0,
+            max: 500,
+            step: 10,
+            get value() {
+                return self._spidy.maxSpeed;
+            },
+            onChange(value: number) {
+                self._spidy.maxSpeed = Math.max(0, value);
+            }
+        } as RangeControl, {
+            type: ControlType.Range,
+            label: 'Max rotation',
+            min: 0,
+            max: 360,
+            step: 1,
+            get value() {
+                return self._spidy.maxRotation;
+            },
+            onChange(value: number) {
+                self._spidy.maxRotation = Math.max(0, value);
+            }
+        } as RangeControl];
     }
 
     public reset = () => {

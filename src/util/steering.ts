@@ -262,22 +262,27 @@ export function dynamicArriveWithRotation(character: DynamicCharacter, target: D
   };
 }
 
-export function dynamicAlign(character: DynamicCharacter, target: DynamicCharacter) {
+export type DynamicAlignOptions = {
+  stopDelta: number;
+  slowDelta: number;
+  timeToTarget: number;
+};
+export function dynamicAlign(character: DynamicCharacter, target: DynamicCharacter, options: DynamicAlignOptions) {
   const { maxRotation, maxAngularAcceleration } = character;
-  const { slowRadius, targetRadius, timeToTarget } = { slowRadius: 25, targetRadius: 5, timeToTarget: 1 };
+  const { slowDelta, stopDelta, timeToTarget } = options;
 
   let targetDirection = normalize(sub(target.position, character.position));
   let targetOrientation = vectorAsOrientation(targetDirection, character.orientation);
   let rotation = getShortestRotation(character.orientation, targetOrientation);
   let rotationSize = Math.abs(rotation);
   
-  if (rotationSize < targetRadius) {
+  if (rotationSize < stopDelta) {
     return null;
   }
 
-  let targetRotation = rotationSize > targetRadius
+  let targetRotation = rotationSize > stopDelta
     ? maxRotation
-    : maxRotation * rotationSize / slowRadius;
+    : maxRotation * rotationSize / slowDelta;
 
   targetRotation *= rotation / rotationSize;
 
