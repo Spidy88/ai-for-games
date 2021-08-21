@@ -91,16 +91,15 @@ export function arrive(character: KinematicCharacter, target: KinematicCharacter
 }
 
 export function arriveWithRotation(character: KinematicCharacter, target: KinematicCharacter, options: ArriveOptions) {
-  const { maxRotation, orientation } = character;
+  const { orientation } = character;
   const { stopRadius, timeToTarget } = options;
 
   let targetDirection = sub(target.position, character.position);
   let distance = length(targetDirection);
   let direction = orientationAsVector(orientation);
   let targetOrientation = vectorAsOrientation(normalize(targetDirection), orientation);
-  let rotationDirection = getPreferredRotationDirection(orientation, targetOrientation);
   let linear = mult(direction, distance / timeToTarget);
-  let angular = maxRotation * rotationDirection;
+  let angular = getShortestRotation(orientation, targetOrientation);
 
   if (distance <= stopRadius) {
     return null;

@@ -1,7 +1,7 @@
 // import * as PIXI from 'pixi.js';
-import { AIvsPlayerApp, Options } from './ai-vs-player-app';
-import { arrive, arriveWithRotation, ArriveOptions } from "../util/steering";
-import { kinematicUpdate, stop } from "../util/update";
+import { AIvsPlayerApp, Options } from '../ai-vs-player-app';
+import { arrive, arriveWithRotation, ArriveOptions } from "../../util/steering";
+import { kinematicUpdate, stop } from "../../util/update";
 // import { Graphics } from 'pixi.js';
 
 export class ArriveApp extends AIvsPlayerApp {

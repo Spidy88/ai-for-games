@@ -12,8 +12,8 @@ export const BookCoverImg = styled.img`
 
 export const DemoSection = styled.section`
     display: grid;
-    grid-template-columns: 1fr 35vw;
-    gap: 1rem;
+    grid-template-columns: 1fr 350px;
+    gap: 2rem;
     margin: 2rem 0;
 `;
 

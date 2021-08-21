@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, AlgorithmCard, CardLink } from './explore.css';
+import { AlgorithmCard, CardLink } from './explore.css';
 import Data from './explore.data';
 
 export function ExplorePage() {
@@ -13,17 +13,10 @@ export function ExplorePage() {
                     {section.articles.map((article, j) => (
                         <CardLink key={j} to={`explore/${article.url}`}>
                             <AlgorithmCard>
-                                <Grid>
-                                    <div>
-                                        <h3>{article.title}</h3>
-                                        <p>{article.details}</p>
-                                    </div>
-                                    <div>
-                                        <div style={{ height: '350px' }}>
-                                            
-                                        </div>
-                                    </div>
-                                </Grid>
+                                <div>
+                                    <h3>{article.title}</h3>
+                                    <p>{article.details}</p>
+                                </div>
                             </AlgorithmCard>
                         </CardLink>
                     ))}

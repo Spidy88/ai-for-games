@@ -1,12 +1,6 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-export const Grid = styled.section`
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem 1rem;
-`;
-
 export const AlgorithmCard = styled.article`
     background-color: var(--main-bg-color);
     color: var(--main-text-color);

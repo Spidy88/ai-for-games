@@ -1,6 +1,6 @@
-import { AIvsPlayerApp } from './ai-vs-player-app';
-import { dynamicArrive, dynamicArriveWithRotation } from "../util/steering";
-import { newtonEuler1Update, stop } from "../util/update";
+import { AIvsPlayerApp } from '../ai-vs-player-app';
+import { dynamicArrive, dynamicArriveWithRotation } from "../../util/steering";
+import { newtonEuler1Update, stop } from "../../util/update";
 
 export class ArriveApp extends AIvsPlayerApp {
     onTick = (delta: number) => {

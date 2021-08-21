@@ -1,6 +1,6 @@
-import { AIvsPlayerApp } from './ai-vs-player-app';
-import { dynamicSeek, dynamicSeekOmnidirectional, dynamicSeekWithRotation } from "../util/steering";
-import { newtonEuler1Update } from "../util/update";
+import { AIvsPlayerApp } from '../ai-vs-player-app';
+import { dynamicSeek, dynamicSeekOmnidirectional, dynamicSeekWithRotation } from "../../util/steering";
+import { newtonEuler1Update } from "../../util/update";
 
 export class SeekApp extends AIvsPlayerApp {
     onTick = (delta: number) => {

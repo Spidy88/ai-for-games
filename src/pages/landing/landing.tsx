@@ -9,7 +9,7 @@ import {
     ControlsContainer
 } from './landing.css';
 import { useState } from 'react';
-import { WanderApp } from '../../apps/wander-app';
+import { WanderApp } from '../../apps/kinematic/wander-app';
 
 export interface LandingPageProps {}
 

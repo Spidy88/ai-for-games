@@ -12,6 +12,7 @@ import { LandingPage, ExplorePage, PlaygroundPage, AlgorithmPage } from './pages
 import homeIcon from './assets/icons/home.svg';
 import exploreIcon from './assets/icons/explore.svg';
 import playgroundIcon from './assets/icons/playground.svg';
+import ScrollToTop from './components/scroll-to-top';
 
 const LeftNavigation = styled.div`
   position: fixed;
@@ -44,6 +45,8 @@ const NavLink = styled(Link)`
 ReactDOM.render(
   <React.StrictMode>
     <Router>
+      <ScrollToTop />
+
       <LeftNavigation>
         <NavLink to="/">
           <NavIcon src={homeIcon} alt="Go to Home page" />

@@ -9,3 +9,9 @@ export const PlaygroundContainer = styled.div`
 export const ControlsContainer = styled.div`
     border-radius: 4px;
 `;
+
+export const MainGrid = styled.div`
+    display: grid;
+    grid-template-columns: 1fr 350px;
+    gap: 2rem;
+`;
