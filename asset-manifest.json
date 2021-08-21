@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/ai-for-games/static/css/main.d52cf1f3.chunk.css",
-    "main.js": "/ai-for-games/static/js/main.47879d8f.chunk.js",
-    "main.js.map": "/ai-for-games/static/js/main.47879d8f.chunk.js.map",
+    "main.js": "/ai-for-games/static/js/main.dfc67360.chunk.js",
+    "main.js.map": "/ai-for-games/static/js/main.dfc67360.chunk.js.map",
     "runtime-main.js": "/ai-for-games/static/js/runtime-main.d1a3f08a.js",
     "runtime-main.js.map": "/ai-for-games/static/js/runtime-main.d1a3f08a.js.map",
     "static/js/2.3b084b8b.chunk.js": "/ai-for-games/static/js/2.3b084b8b.chunk.js",
@@ -21,6 +21,6 @@
     "static/js/runtime-main.d1a3f08a.js",
     "static/js/2.3b084b8b.chunk.js",
     "static/css/main.d52cf1f3.chunk.css",
-    "static/js/main.47879d8f.chunk.js"
+    "static/js/main.dfc67360.chunk.js"
   ]
 }
