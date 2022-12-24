@@ -1,11 +1,13 @@
 import * as PIXI from 'pixi.js';
 import { App, Control, IWatcher } from '../models/app';
 import { Character } from '../models/character';
+import { Graphic } from '../models/graphic';
 
 export class BaseApp implements App {
     protected _isRunning: boolean = false;
     protected _pixiApp: PIXI.Application | null = null;
     protected _characters: Character[];
+    protected _graphics: Graphic[];
     protected _watchers: IWatcher[];
     protected _debugWatchers: IWatcher[];
     protected _controls: Control[];
@@ -13,6 +15,7 @@ export class BaseApp implements App {
 
     constructor() {
         this._characters = [];
+        this._graphics = [];
         this._watchers = [];
         this._debugWatchers = [];
         this._controls = [];
@@ -68,6 +71,11 @@ export class BaseApp implements App {
     registerPixiApp = (pixiApp: PIXI.Application) => {
         if (this._pixiApp) throw new Error('App is already registered to a PIXI App');
         this._pixiApp = pixiApp;
+
+        for( let graphic of this._graphics) {
+            // graphic.scale = pixiApp.screen.width * this._scale;
+            pixiApp.stage.addChild(graphic.view);
+        }
 
         for( let character of this._characters) {
             character.size = pixiApp.screen.width * this._scale;
