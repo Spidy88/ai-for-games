@@ -86,6 +86,21 @@ export class Character implements DynamicCharacter {
     getPosition(position: Position) {
         let x = this._position[0] + this._container.width / 2;
         let y = this._position[1] + this._container.height / 2;
+
+        if ([Position.TOP, Position.CENTER, Position.BOTTOM].includes(position)) {
+            x -= this._container.width / 2;
+        }
+        else if ([Position.TOP_RIGHT, Position.RIGHT, Position.BOTTOM_RIGHT].includes(position)) {
+            x -= this._container.width;
+        }
+
+        if ([Position.LEFT, Position.CENTER, Position.RIGHT].includes(position)) {
+            y -= this._container.height / 2;
+        }
+        else if ([Position.BOTTOM_LEFT, Position.BOTTOM, Position.BOTTOM_RIGHT].includes(position)) {
+            y -= this._container.height;
+        }
+
         return [x, y];
     }
 
