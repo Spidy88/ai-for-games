@@ -26,6 +26,7 @@ export const DynamicSection = {
         DynamicFlee,
         DynamicArrive,
         DynamicAlign,
+        DynamicAlign,
         DynamicAlign
     ]
 };
