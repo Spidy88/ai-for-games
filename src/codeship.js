@@ -1,5 +1,5 @@
-import "./styles.css";
-import * as PIXI from "pixi.js";
+import './styles.css';
+import * as PIXI from 'pixi.js';
 const Sprite = PIXI.Sprite;
 
 const worldSize = 500;
@@ -19,12 +19,12 @@ let villain;
 
 app.loader
   .add(
-    "spidy",
-    "https://cdn4.iconfinder.com/data/icons/diversity-v2-0-volume-03/64/superhero-spiderman-comics-512.png"
+    'spidy',
+    'https://cdn4.iconfinder.com/data/icons/diversity-v2-0-volume-03/64/superhero-spiderman-comics-512.png'
   )
   .add(
-    "villain",
-    "https://cdn4.iconfinder.com/data/icons/diversity-v2-0-volume-02/64/burglar-asian-female-512.png"
+    'villain',
+    'https://cdn4.iconfinder.com/data/icons/diversity-v2-0-volume-02/64/burglar-asian-female-512.png'
   )
   .load(onAssetsReady);
 
@@ -76,7 +76,7 @@ function update2(delta) {
 }
 
 function onAssetsReady() {
-  startBtn.removeAttribute("disabled");
+  startBtn.removeAttribute('disabled');
   spidy = new Sprite(app.loader.resources.spidy.texture);
   villain = new Sprite(app.loader.resources.villain.texture);
 
@@ -90,16 +90,16 @@ function onAssetsReady() {
   villain.interactive = villain.buttonMode = true;
   villain
     // events for drag start
-    .on("mousedown", onDragStart)
-    .on("touchstart", onDragStart)
+    .on('mousedown', onDragStart)
+    .on('touchstart', onDragStart)
     // events for drag end
-    .on("mouseup", onDragEnd)
-    .on("mouseupoutside", onDragEnd)
-    .on("touchend", onDragEnd)
-    .on("touchendoutside", onDragEnd)
+    .on('mouseup', onDragEnd)
+    .on('mouseupoutside', onDragEnd)
+    .on('touchend', onDragEnd)
+    .on('touchendoutside', onDragEnd)
     // events for drag move
-    .on("mousemove", onDragMove)
-    .on("touchmove", onDragMove);
+    .on('mousemove', onDragMove)
+    .on('touchmove', onDragMove);
 
   function onDragStart(event) {
     event.isDragging = true;
@@ -121,26 +121,26 @@ function onAssetsReady() {
   app.stage.addChild(villain);
 }
 
-document.getElementById("app").appendChild(app.view);
-const startBtn = document.getElementById("start");
-const stopBtn = document.getElementById("stop");
-const resetBtn = document.getElementById("reset");
+document.getElementById('app').appendChild(app.view);
+const startBtn = document.getElementById('start');
+const stopBtn = document.getElementById('stop');
+const resetBtn = document.getElementById('reset');
 
-startBtn.addEventListener("click", () => {
-  startBtn.setAttribute("disabled", "true");
-  stopBtn.removeAttribute("disabled");
+startBtn.addEventListener('click', () => {
+  startBtn.setAttribute('disabled', 'true');
+  stopBtn.removeAttribute('disabled');
 
   app.ticker.add(onTick);
 });
 
-stopBtn.addEventListener("click", () => {
-  stopBtn.setAttribute("disabled", "true");
-  startBtn.removeAttribute("disabled");
+stopBtn.addEventListener('click', () => {
+  stopBtn.setAttribute('disabled', 'true');
+  startBtn.removeAttribute('disabled');
 
   app.ticker.remove(onTick);
 });
 
-resetBtn.addEventListener("click", () => {
+resetBtn.addEventListener('click', () => {
   spidy.x = spidy.y = avatarSize / 2;
   villain.x = villain.y = worldSize - avatarSize / 2;
 });
